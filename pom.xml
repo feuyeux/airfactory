@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>creative.air</groupId>
+	<artifactId>airfactory</artifactId>
+	<packaging>pom</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Air Project Parent</name>
+
+	<modules>
+		<module>air-concurrent</module>
+		<module>air-schedule</module>	
+		<module>air-xml</module>
+	</modules>
+
+	<properties>
+		<junit.version>4.10</junit.version>
+		<quartz.version>2.1.6</quartz.version>
+		<slf4j.version>1.6.1</slf4j.version>
+		<log4j.version>1.2.16</log4j.version>
+		<jaxb.version>2.1.9</jaxb.version>
+		<jackson.version>1.9.9</jackson.version>
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+						<encoding>utf-8</encoding>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<!-- support eclipse's web server -->
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>2.8</version>
+					<configuration>
+						<downloadSources>false</downloadSources>
+						<wtpversion>2.0</wtpversion>
+						<encoding>utf-8</encoding>
+					</configuration>
+				</plugin>
+			</plugins>
+	
+		</pluginManagement>
+	</build>
+
+	<dependencies>
+		<!-- Log
+		SLF4j is not a logger in itself, it’s a facade or wrapper that 
+			delegates the actual business of logging to one of the more well known logger 
+			implementations, which is usually Log4J.
+			
+		CHOOSE BETWEEN ONE OF THESE DIFFERENT BINDINGS
+		Binding for NOP(no-operation), silently discarding all logging.
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		Binding for System.out
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		Binding for commons logging over slf4j
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		-->
+		<!--Binding for log4j version 1.2.x You also need to place log4j.jar on 
+			your class path. -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+
+		<!-- Unit Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
