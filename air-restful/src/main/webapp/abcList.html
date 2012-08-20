@@ -1,35 +1,31 @@
 <html>
-	<head>
-		<title>The abc Dojo DataGrid Test</title>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.6.1/dojo/dojo.js"
-			djConfig="parseOnLoad:true"></script>
-		<script type="text/javascript">
-		dojo.ready(function(){
-		  var targetNode = dojo.byId("abcDiv");
-		  var xhrArgs = {
-			url: "restful/abc/get" ,
-			handleAs: "json",
-			preventCache: false,
-			timeout:3000
-		  }
-		  // Call the asynchronous xhrGet
-		  var deferred = dojo.xhrGet(xhrArgs);
-		
-		  deferred.then(
-			function(data){
-				//data = data.replace(/\@/g, "");
-				var sData = JSON.stringify(data);
-				targetNode.innerHTML = sData;
-			},
-			function(error){
-			    targetNode.innerHTML = "An unexpected error occurred: " + error;
-			}
-		  );
-		});
-		</script>
-	</head>
-	
-	<body class="claro">
-		<div id="abcDiv" style="height:500px;"></div>
-	</body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>The abc Dojo DataGrid Test</title>
+        <script type="text/javascript" src="dojo1.6.1/dojo/dojo.js"
+        djConfig="parseOnLoad:true"></script>
+        <script type="text/javascript">
+            dojo.ready(function(){
+                getData();
+            });
+            
+            function getData(){	
+                dojo.xhrGet({
+                    url: "restful/abc/get" ,
+                    preventCache : false,
+                    load: function (data, ioArgs){
+                        console.log(data);
+                        var sData = JSON.stringify(data);
+                        dojo.byId("abcDiv").innerHTML = sData;  
+                    },               
+                    headers: {"Accept": "application/json"},
+                    handleAs: 'json'
+                });
+            }
+        </script>
+    </head>
+
+    <body class="claro">
+        <div id="abcDiv" style="height:500px;"></div>
+    </body>
 </html>

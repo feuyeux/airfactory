@@ -13,6 +13,10 @@
 	<packaging>war</packaging>
 	<name>Air RESTFUL Project</name>
 
+	<properties>
+		<slf4j.version>1.4.3</slf4j.version>
+	</properties>
+	
 	<dependencies>
 		<!-- jersey -->
 		<dependency>
@@ -88,7 +92,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>jerseyTest</finalName>
+		<finalName>air-restful</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -110,8 +114,5 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-	</build>
-    <properties>
-        <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
-    </properties>
+	</build>	
 </project>
