@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <style type="text/css">
+            @import "dojo1.6.1/dojo/resources/dojo.css";
+            @import "dojo1.6.1/dijit/themes/tundra/tundra.css";
+        </style> 
+        <script type="text/javascript" src="dojo1.6.1/dojo/dojo.js" data-dojo-config="isDebug: true,parseOnLoad: true"></script>
+
+        <script> 
+            dojo.require("dijit.layout.TabContainer");
+            dojo.require("dijit.layout.ContentPane");
+            dojo.ready(function(){
+                var tc = new dijit.layout.TabContainer({
+                    style: "height: 100%; width: 100%;"
+                }, "tabContainer1");
+
+                var cp1 = new dijit.layout.ContentPane({
+                    title: "Food",
+                    content: "We offer amazing food"
+                });
+                tc.addChild(cp1);
+
+                var cp2 = new dijit.layout.ContentPane({
+                    title: "Drinks",
+                    content: "We are known for our drinks."
+                });
+                tc.addChild(cp2);
+                tc.startup();
+            });
+        </script> 
+    </head>
+    <body class="tundra">
+        <div style="width: 350px; height: 290px">
+            <div id="tabContainer1"></div>
+        </div>
+    </body>
+</html>

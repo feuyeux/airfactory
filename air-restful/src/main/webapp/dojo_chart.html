@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <!-- http://dojotoolkit.org/reference-guide/1.7/dojox/charting.html -->
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <!--meta http-equiv="Access-Control-Allow-Origin" content="*"-->
+
+        <script type="text/javascript"
+        src="dojo1.6.1/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+
+        <script type="text/javascript">
+            dojo.require("dojox.charting.Chart2D");
+            dojo.require("dojox.charting.Chart");
+            dojo.require("dojox.charting.Chart3D");
+            
+            dojo.require("dojox.charting.axis2d.Default");
+            
+            dojo.require("dojox.charting.plot2d.Default");        
+            dojo.require("dojox.charting.plot2d.Lines");
+            dojo.require("dojox.charting.plot2d.ClusteredColumns");
+            dojo.require("dojox.charting.plot3d.Bars");
+           
+            dojo.require("dojox.charting.action2d.Tooltip");
+            dojo.require("dojox.charting.action2d.MoveSlice");
+    
+            dojo.require("dojo.fx.easing");
+            
+            dojo.require("dojox.charting.themes.Wetland");
+            dojo.require("dojox.charting.themes.Tufte");
+            dojo.require("dojox.charting.themes.PlotKit.green");
+                
+            dojo.require("dojox.gfx3d.matrix");
+            
+            dojo.ready(function(){
+                //1
+                var c = new dojox.charting.Chart2D("chartOne");
+                c.addPlot("default", {type: "StackedAreas", tension:3})
+                .addAxis("x", {fixLower: "major", fixUpper: "major"})
+                .addAxis("y", {vertical: true, fixLower: "major", fixUpper: "major", min: 0})
+                .setTheme(dojox.charting.themes.Wetland)
+                .addSeries("Series A", [1, 2, 0.5, 1.5, 1, 2.8, 0.4])
+                .addSeries("Series B", [2.6, 1.8, 2, 1, 1.4, 0.7, 2])
+                .addSeries("Series C", [6.3, 1.8, 3, 0.5, 4.4, 2.7, 2])
+                .render();
+  
+                //2                
+                var chart1 = new dojox.charting.Chart("simplechart", {
+                    title: "simple chart",
+                    titlePos: "bottom",
+                    titleGap: 5,
+                    titleFont: "normal normal normal 10pt Arial",
+                    titleFontColor: "orange"
+                })
+
+                chart1.addPlot("default", {type: "Lines"});
+                chart1.addAxis("x");
+                chart1.addAxis("y", {vertical: true});
+                chart1.addSeries("Series 1", [1, 2, 2, 3, 4, 5, 5, 7]);
+                chart1.render();
+
+                //3
+                var pieChart = new dojox.charting.Chart2D("pieChart");
+                var pieData = [{ "x": "1", "y": "9420" }, { "x":"2", "y":"10126" }, 
+                    { "x": "3", "y": "9803" }, { "x": "4", "y": "15965" }, { "x": "5", "y": "17290" }, 
+                    { "x": "6", "y": "15667" }, { "x": "7", "y": "17762" }];
+                pieChart.setTheme(dojox.charting.themes.PlotKit.green);
+                //add plot
+                pieChart.addPlot("default", {
+                    type: "Pie",
+                    radius: 100,
+                    fontColor: "black",
+                    labelOffset: "-20"
+                });
+                //add the data series
+                pieChart.addSeries("January",pieData);
+                //slice animation!
+                new dojox.charting.action2d.MoveSlice(pieChart,"default");
+                //tooltips!
+                new dojox.charting.action2d.Tooltip(pieChart,"default");
+                //render the chart
+                pieChart.render();
+                
+                //4
+                var animChart = new dojox.charting.Chart2D("animChart");
+                animChart.setTheme(dojox.charting.themes.Tufte).
+                    addAxis("x", { fixLower: "minor", fixUpper: "minor", natural: true }).
+                    addAxis("y", { vertical: true, fixLower: "major", fixUpper: "major", includeZero: true }).
+                    addPlot("default", { type: "ClusteredColumns", gap: 10, animate: { duration: 2000, easing: dojo.fx.easing.bounceInOut } }).
+                    addSeries("Series A", [ 2, 1, 0.5, -1, -2 ] ).
+                    addSeries("Series B", [ -2, -1, -0.5, 1, 2 ] ).
+                    addSeries("Series C", [ 1, 0.5, -1, -2, -3 ] ).
+                    addSeries("Series D", [ 0.7, 1.5, -1.2, -1.25, 3 ] ).
+                    render(); 
+                
+                
+                //5
+                var m = dojox.gfx3d.matrix;
+                var chart3d = new dojox.charting.Chart3D("chart3d",
+                {
+                    lights:   [{direction: {x: 5, y: 5, z: -5}, color: "white"}],
+                    ambient:  {color:"white", intensity: 2},
+                    specular: "white"
+                },
+                [m.cameraRotateXg(10), m.cameraRotateYg(-10), m.scale(0.8), m.cameraTranslate(-50, -50, 0)]
+            );
+
+                var bars3d_a = new dojox.charting.plot3d.Bars(500, 500, {gap: 10, material: "yellow"});
+                bars3d_a.setData([1, 2, 3, 2, 1, 2, 3, 4, 5]);
+                chart3d.addPlot(bars3d_a);
+
+                var bars3d_b = new dojox.charting.plot3d.Bars(500, 500, {gap: 10, material: "red"});
+                bars3d_b.setData([2, 3, 4, 3, 2, 3, 4, 5, 5]);
+                chart3d.addPlot(bars3d_b);
+
+                var bars3d_c = new dojox.charting.plot3d.Bars(500, 500, {gap: 10, material: "blue"});
+                bars3d_c.setData([3, 4, 5, 4, 3, 4, 5, 5, 5]);
+                chart3d.addPlot(bars3d_c);
+
+                chart3d.generate().render();
+            });
+        </script>
+    </head>
+    <body>
+        <div id="chartOne" style="width: 300px; height: 140px;"></div>
+        <div id="simplechart" style="width: 300px; height: 150px;"></div>
+        <div id="pieChart" style="width: 300px; height: 300px;"></div>
+
+        <div id="animChart" style="width: 300px; height: 300px;"></div>
+        <div id="chart3d" style="width: 500px; height: 500px;"></div>
+    </body>
+</html>

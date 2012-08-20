@@ -12,6 +12,7 @@ git push -u origin master
 
 #HTTP
 https://github.com/feuyeux/airfactory.git
+https://feuyeux@github.com/feuyeux/airfactory.git
 #SSH
 git@github.com:feuyeux/airfactory.git
 #git

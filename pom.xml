@@ -17,12 +17,22 @@
 	<properties>
 		<junit.version>4.10</junit.version>
 		<quartz.version>2.1.6</quartz.version>
-		<slf4j.version>1.6.1</slf4j.version>
-		<log4j.version>1.2.16</log4j.version>
+	
 		<jaxb.version>2.1.9</jaxb.version>
 		<jackson.version>1.9.9</jackson.version>
-	</properties>
+		
+		<jersey.version>1.10</jersey.version>
+		<spring.version>3.0.3.RELEASE</spring.version>
 
+		<mysql.version>5.0.5</mysql.version>
+		<hibernate.version>3.5.1-Final</hibernate.version>
+
+		<netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
+                
+                <slf4j.version>1.6.1</slf4j.version>
+		<log4j.version>1.2.16</log4j.version>
+	</properties>
+	
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -90,7 +100,7 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
-			<scope>runtime</scope>
+			<!--<scope>runtime</scope>-->
 		</dependency>
 
 
@@ -102,4 +112,50 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
+	<repositories>
+		<repository>
+			<id>springsource-repo</id>
+			<name>SpringSource Repository</name>
+			<url>http://repo.springsource.org/release</url>
+		</repository>
+
+		<repository>
+			<id>repository.springframework.maven.release</id>
+			<name>Spring Framework Maven Release Repository</name>
+			<url>http://maven.springframework.org/release</url>
+		</repository>
+
+		<repository>
+			<id>jboss</id>
+			<name>JBoss</name>
+			<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>jvnet-nexus</id>
+			<name>jvnet-nexus</name>
+			<url>https://maven.java.net/content/repositories/releases/</url>
+		</repository>
+
+		<repository>
+			<id>repo1</id>
+			<name>repo1</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+
+		<repository>
+			<id>glassfish-repository</id>
+			<url>http://download.java.net/maven/glassfish/</url>
+		</repository>
+	</repositories>
 </project>

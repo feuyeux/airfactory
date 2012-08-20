@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="LocalMysqlScheduler">
+		<!-- provider -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<properties>
+			<!-- Persistent Classes -->
+			<property name="hibernate.archive.autodetection" value="class, hbm" />
+
+			<!-- logs SQL 
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.format_sql" value="true"/>
+			<property name="use_sql_comments" value="true"/>
+			-->
+			
+			<!-- Connexion JDBC -->
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/scheduler" />
+			<property name="hibernate.connection.username" value="root" />
+			<property name="hibernate.connection.password" value="root" />
+			<property name="hibernate.c3p0.max_size" value="200" />
+			<property name="hibernate.c3p0.min_size" value="2" />
+			<property name="hibernate.c3p0.timeout" value="14400" />
+			<property name="hibernate.c3p0.max_statements" value="100" />
+			<property name="hibernate.c3p0.idle_test_period" value="14400" />
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.validate" value="true" />
+			<property name="hibernate.c3p0.acquireRetryAttempts" value="3" />
+			<property name="hibernate.c3p0.acquireRetryDelay" value="1" />
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="ProductionMysqlScheduler">
+		<!-- provider -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<properties>
+			<!-- Persistent Classes -->
+			<property name="hibernate.archive.autodetection" value="class, hbm" />
+			<!-- Connexion JDBC -->
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.connection.url"
+				value="jdbc:mysql://rennslxweb03.rennes.eu.thmulti.com:3306/utf_scheduler_db" />
+			<property name="hibernate.connection.username" value="stf_dba" />
+			<property name="hibernate.connection.password" value="Stfdb11*" />
+			<property name="hibernate.c3p0.max_size" value="200" />
+			<property name="hibernate.c3p0.min_size" value="2" />
+			<property name="hibernate.c3p0.timeout" value="14400" />
+			<property name="hibernate.c3p0.max_statements" value="100" />
+			<property name="hibernate.c3p0.idle_test_period" value="14400" />
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.validate" value="true" />
+			<property name="hibernate.c3p0.acquireRetryAttempts" value="3" />
+			<property name="hibernate.c3p0.acquireRetryDelay" value="1" />
+		</properties>
+	</persistence-unit>
+	
+	<persistence-unit name="StagingMysqlScheduler">
+		<!-- provider -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<properties>
+			<!-- Persistent Classes -->
+			<property name="hibernate.archive.autodetection" value="class, hbm" />
+			<!-- Connexion JDBC -->
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://10.11.59.16:3306/scheduler" />
+			<property name="hibernate.connection.username" value="scheduler" />
+			<property name="hibernate.connection.password" value="schedulerpassword" />
+			<property name="hibernate.c3p0.max_size" value="200" />
+			<property name="hibernate.c3p0.min_size" value="2" />
+			<property name="hibernate.c3p0.timeout" value="14400" />
+			<property name="hibernate.c3p0.max_statements" value="100" />
+			<property name="hibernate.c3p0.idle_test_period" value="14400" />
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.validate" value="true" />
+			<property name="hibernate.c3p0.acquireRetryAttempts" value="3" />
+			<property name="hibernate.c3p0.acquireRetryDelay" value="1" />
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="H2Scheduler">
+		<properties>
+			<!-- Connexion JDBC -->
+			<property name="hibernate.connection.driver_class" value="org.h2.Driver" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+			<property name="hibernate.connection.url"
+				value="jdbc:h2:mem:scheduler;MODE=MySQL;DB_CLOSE_DELAY=-1;MVCC=TRUE;init=runscript from './database/create/CreateSchedulerSchemaForH2.sql'" />
+			<property name="hibernate.connection.username" value="sa" />
+			<property name="hibernate.connection.password" value="" />
+			<property name="hibernate.hbm2ddl.auto" value="validate" />
+		</properties>
+	</persistence-unit>
+</persistence>
