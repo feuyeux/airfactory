@@ -8,15 +8,10 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<groupId>creative.air</groupId>
 	<artifactId>air-restful</artifactId>
 	<packaging>war</packaging>
 	<name>Air RESTFUL Project</name>
 
-	<properties>
-		<slf4j.version>1.4.3</slf4j.version>
-	</properties>
-	
 	<dependencies>
 		<!-- jersey -->
 		<dependency>
@@ -30,7 +25,7 @@
 			<artifactId>jersey-json</artifactId>
 			<version>${jersey.version}</version>
 		</dependency>
-		
+
 		<!-- spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -49,7 +44,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
-			<scope>test</scope>
 		</dependency>
 
 		<!-- log -->
@@ -88,6 +82,12 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 
@@ -114,5 +114,5 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-	</build>	
+	</build>
 </project>
