@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <!-- http://dojotoolkit.org/reference-guide/1.7/dojox/charting.html -->
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <!--meta http-equiv="Access-Control-Allow-Origin" content="*"-->
+
+        <script type="text/javascript"
+        src="dojo1.6.1/dojo/dojo.js" djConfig="parseOnLoad:true"></script>
+
+        <script type="text/javascript">
+            var cools=[
+                "#357EC7",/*Slate Blue*/
+                "#3090C7",/*Deep Sky Blue3*/
+                "#25587E",/*Deep Sky Blue4*/
+                "#1569C7",/*Dodger Blue3*/
+                "#488AC7",/*Steel Blue3*/
+                "#41627E"/*Sky Blue4*/];
+
+            var warms = [
+                "#C85A17",/*Chocolate*/ 
+                "#C24641",/*Indian Red3*/
+                "#8A4117",/*Sienna*/
+                "#7E3117",/*Dark Orange3*/
+                "#806517",/*Gold4*/
+                "#7D2252"/*Hot Pink4*/];
+            
+            dojo.require("dojox.charting.Chart2D");
+            dojo.require("dojox.charting.Chart");
+            dojo.require("dojox.charting.Chart3D");
+            
+            dojo.require("dojox.charting.axis2d.Default");
+            
+            dojo.require("dojox.charting.plot2d.Default");        
+            dojo.require("dojox.charting.plot2d.Lines");
+            dojo.require("dojox.charting.plot2d.ClusteredColumns");
+            dojo.require("dojox.charting.plot3d.Bars");
+           
+            dojo.require("dojox.charting.action2d.Tooltip");
+            dojo.require("dojox.charting.action2d.MoveSlice");
+    
+            dojo.require("dojo.fx.easing");
+            
+            dojo.require("dojox.charting.themes.Claro");
+            dojo.require("dojox.charting.themes.Wetland");
+            dojo.require("dojox.charting.themes.Tufte");
+            dojo.require("dojox.charting.themes.Grasshopper");
+            
+            dojo.require("dojox.charting.action2d.Tooltip");
+            dojo.require("dojox.charting.action2d.Magnify");
+            dojo.require("dojox.charting.widget.Legend");
+            
+            dojo.ready(function(){              
+                var chart1 = new dojox.charting.Chart("simplechart", {
+                    title: "simple chart",
+                    titlePos: "bottom",
+                    titleGap: 5,
+                    titleFont: "normal normal normal 10pt Arial",
+                    titleFontColor: "orange",
+                    displayRange: 10
+                })
+                chart1.setTheme(dojox.charting.themes.Claro);
+
+                chart1.addPlot("default", {type: "Lines"});
+                chart1.addAxis("x",  { 
+                    fixLower: "minor", 
+                    fixUpper: "minor", natural: true,fixed:true, 
+                    majorLabels: true, 
+                    natural: true, 
+                    includeZero: false, 
+                    labelFunc: function(o) { 
+                        return o; 
+                    }
+                });
+                
+                chart1.addAxis("y", {
+                    vertical: true,
+                    fixLower: "major", 
+                    fixUpper: "major", 
+                    includeZero: true});
+                
+                chart1.addAxis("right y", {
+                    vertical: true, 
+                    fixLower: "major", 
+                    fixUpper: "major", 
+                    includeZero: true, 
+                    max:100, 
+                    labelFunc: function(o) { 
+                        return o + "%"; 
+                    }, leftBottom: false}); 
+
+                chart1.addPlot("default", {
+                    type: dojox.charting.plot2d.Markers, 
+                    markers: true, 
+                    tension: 'S'
+                }); 
+                
+                chart1.addPlot("right", {
+                    type:dojox.charting.plot2d.Markers, 
+                    markers: true, 
+                    tension: 'S', 
+                    vAxis: "right y"}); 
+                
+                chart1.addSeries("Y1_1", [1, 2, 15, 3, 4, 5, 5, 7], {
+                    stroke: {color: cools[0]}
+                });
+                
+                chart1.addSeries("Y1_2", [15, 3, 4, 5, 5, 7,1, 2], {
+                    stroke: {color: cools[1]}
+                });
+                
+                chart1.addSeries("Y2_1", [2, 4, 18, 5, 9, 3, 1, 4], {
+                    stroke: {color: warms[0]},
+                    plot: "right"}); 
+                chart1.addSeries("Y2_2", [1, 2, 3,4, 5, 6,7,8,9], {stroke: {color: warms[1]},plot: "right"}); 
+             
+                new dojox.charting.action2d.Tooltip(chart1, "default");
+	
+                //define magnify for zooming the chart's point
+                var magnify= new dojox.charting.action2d.Magnify(chart1,"default", {duration: 200, scale: 1.1});
+                magnify.scale=3;
+        
+                chart1.render();  
+                
+                var legend = new dojox.charting.widget.Legend({chart : chart1,style:"margin-left:20px;"}, "legendDiv");
+			legend.region="right";
+                        
+            });
+        </script>
+    </head>
+    <body>
+        <div id="simplechart" style="width: 500px; height: 350px;"></div>
+        <div id="legendDiv"></div>
+    </body>
+</html>

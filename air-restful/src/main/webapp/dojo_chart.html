@@ -84,7 +84,7 @@
                 //4
                 var animChart = new dojox.charting.Chart2D("animChart");
                 animChart.setTheme(dojox.charting.themes.Tufte).
-                    addAxis("x", { fixLower: "minor", fixUpper: "minor", natural: true }).
+                    addAxis("x", { fixLower: "minor", fixUpper: "minor", fixed : true,natural: true }).
                     addAxis("y", { vertical: true, fixLower: "major", fixUpper: "major", includeZero: true }).
                     addPlot("default", { type: "ClusteredColumns", gap: 10, animate: { duration: 2000, easing: dojo.fx.easing.bounceInOut } }).
                     addSeries("Series A", [ 2, 1, 0.5, -1, -2 ] ).
@@ -92,7 +92,6 @@
                     addSeries("Series C", [ 1, 0.5, -1, -2, -3 ] ).
                     addSeries("Series D", [ 0.7, 1.5, -1.2, -1.25, 3 ] ).
                     render(); 
-                
                 
                 //5
                 var m = dojox.gfx3d.matrix;

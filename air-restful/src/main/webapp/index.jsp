@@ -19,6 +19,10 @@
             dojo_chart
         </a>
         <br/>
+        <a href="dojo_doubleY_chart.html" target="_self">
+            dojo_double_Y_axis
+        </a>
+        <br/>
         <a href="dojo_tab.html" target="_self">
             dojo_tab
         </a>
