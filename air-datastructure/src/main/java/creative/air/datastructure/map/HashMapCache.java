@@ -1,6 +1,5 @@
 package creative.air.datastructure.map;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -39,20 +38,20 @@ public class HashMapCache<H, L> {
 	private static ReadLock rLock = lock.readLock();
 	private ConcurrentStrategy concurrentStrategy = ConcurrentStrategy.NOTIFY;
 
-	private HashMap<H, L> map;
+	private AirHashMap<H, L> map;
 
 	public HashMapCache() {
-		map = new HashMap<H, L>();
+		map = new AirHashMap<H, L>();
 	}
 
 	public HashMapCache(int capacity) {
 		this.capacity = capacity;
-		map = new HashMap<H, L>();
+		map = new AirHashMap<H, L>();
 	}
 
 	public HashMapCache(int capacity, int initialCapacity, float loadFactor) {
 		this.capacity = capacity;
-		map = new HashMap<H, L>(initialCapacity, loadFactor);
+		map = new AirHashMap<H, L>(initialCapacity, loadFactor);
 	}
 
 	public void clear() {

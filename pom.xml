@@ -12,7 +12,6 @@
 		<module>air-concurrent</module>
 		<module>air-schedule</module>	
 		<module>air-xml</module>
-		<module>air-datastructure</module>
 	</modules>
 
 	<properties>
