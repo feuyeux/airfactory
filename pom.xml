@@ -10,17 +10,18 @@
 
 	<modules>
 		<module>air-concurrent</module>
-		<module>air-schedule</module>	
+		<module>air-schedule</module>
 		<module>air-xml</module>
+		<module>air-jpa2</module>
 	</modules>
 
 	<properties>
 		<junit.version>4.10</junit.version>
 		<quartz.version>2.1.6</quartz.version>
-	
+
 		<jaxb.version>2.1.9</jaxb.version>
 		<jackson.version>1.9.9</jackson.version>
-		
+
 		<jersey.version>1.10</jersey.version>
 		<spring.version>3.0.3.RELEASE</spring.version>
 
@@ -28,11 +29,11 @@
 		<hibernate.version>3.5.1-Final</hibernate.version>
 
 		<netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
-                
-                <slf4j.version>1.6.1</slf4j.version>
+
+		<slf4j.version>1.6.1</slf4j.version>
 		<log4j.version>1.2.16</log4j.version>
 	</properties>
-	
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -58,37 +59,21 @@
 					</configuration>
 				</plugin>
 			</plugins>
-	
+
 		</pluginManagement>
 	</build>
 
 	<dependencies>
-		<!-- Log
-		SLF4j is not a logger in itself, it’s a facade or wrapper that 
+		<!-- Log SLF4j is not a logger in itself, it’s a facade or wrapper that 
 			delegates the actual business of logging to one of the more well known logger 
-			implementations, which is usually Log4J.
-			
-		CHOOSE BETWEEN ONE OF THESE DIFFERENT BINDINGS
-		Binding for NOP(no-operation), silently discarding all logging.
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-nop</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		Binding for System.out
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
-		Binding for commons logging over slf4j
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		-->
+			implementations, which is usually Log4J. CHOOSE BETWEEN ONE OF THESE DIFFERENT 
+			BINDINGS Binding for NOP(no-operation), silently discarding all logging. 
+			<dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-nop</artifactId> 
+			<version>${slf4j.version}</version> </dependency> Binding for System.out 
+			<dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-simple</artifactId> 
+			<version>${slf4j.version}</version> </dependency> Binding for commons logging 
+			over slf4j <dependency> <groupId>org.slf4j</groupId> <artifactId>jcl-over-slf4j</artifactId> 
+			<version>${slf4j.version}</version> <scope>runtime</scope> </dependency> -->
 		<!--Binding for log4j version 1.2.x You also need to place log4j.jar on 
 			your class path. -->
 		<dependency>
@@ -100,7 +85,7 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
-			<!--<scope>runtime</scope>-->
+			<!--<scope>runtime</scope> -->
 		</dependency>
 
 
@@ -109,10 +94,10 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
-			<!--<scope>test</scope>-->
+			<!--<scope>test</scope> -->
 		</dependency>
 	</dependencies>
-	
+
 	<repositories>
 		<repository>
 			<id>springsource-repo</id>
@@ -158,4 +143,21 @@
 			<url>http://download.java.net/maven/glassfish/</url>
 		</repository>
 	</repositories>
+
+	<contributors>
+		<contributor>
+			<name>Eric Han</name>
+			<email>feuyeux@gmail.com</email>
+			<url>http://feuyeux.iteye.com</url>
+			<organization>Technicolor</organization>
+			<organizationUrl>http://technicolor.com</organizationUrl>
+			<roles>
+				<role>tester</role>
+			</roles>
+			<timezone>+8</timezone>
+			<properties>
+				<gtalk>feuyeux@gmail.com</gtalk>
+			</properties>
+		</contributor>
+	</contributors>
 </project>

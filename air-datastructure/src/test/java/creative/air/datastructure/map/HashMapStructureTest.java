@@ -25,7 +25,7 @@ public class HashMapStructureTest {
 	private void print() {
 		StringBuilder buffer = new StringBuilder();
 		buffer.append("table_len=" + map.getTable().length);
-		buffer.append("map_size=" + map.size() + "\n");
+		buffer.append(" map_size=" + map.size() + "\n");
 		for (int i = 0; i < map.getTable().length; i++) {
 			AirEntry<StringInt, Integer> e = map.getTable()[i];
 			if (e != null) {

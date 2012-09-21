@@ -12,11 +12,11 @@ import org.junit.Test;
 
 /**
  * Test HashMap
- * 1 map：键值对 hash：hashcode 
- * 2 非线程安全 键值允许为空 键为空时的处理 
- * 3 数组+链表结构 
- * 4 负载因子loadFactor和阈值threshold 扩容机制 缓存设计 
- * 5 遍历
+ * 1 mapï¼šé”®å€¼å¯¹ hashï¼šhashcode 
+ * 2 é�žçº¿ç¨‹å®‰å…¨ é”®å€¼å…�è®¸ä¸ºç©º é”®ä¸ºç©ºæ—¶çš„å¤„ç�† 
+ * 3 æ•°ç»„+é“¾è¡¨ç»“æž„ 
+ * 4 è´Ÿè½½å› å­�loadFactorå’Œé˜ˆå€¼threshold æ‰©å®¹æœºåˆ¶ ç¼“å­˜è®¾è®¡ 
+ * 5 é��åŽ†
  * 
  * Test Cache
  * @author

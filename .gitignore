@@ -8,3 +8,5 @@ target
 jsfrf.iml
 nb-configuration.xml
 Thumbs.db
+/JsfJpa/nbproject/private/
+/JsfJpa/build/
