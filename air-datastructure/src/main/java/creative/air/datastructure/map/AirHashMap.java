@@ -1,4 +1,5 @@
 package creative.air.datastructure.map;
+
 /**
  * 
  * @author
@@ -160,9 +161,8 @@ public class AirHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Cl
 		int i = indexFor(hash, table.length);
 
 		/**
-		 * Look for preexisting entry for key. This will never happen for clone
-		 * or deserialize. It will only happen for construction if the input Map
-		 * is a sorted map whose ordering is inconsistent w/ equals.
+		 * Look for preexisting entry for key. This will never happen for clone or deserialize. It will only happen for construction if the input Map is a
+		 * sorted map whose ordering is inconsistent w/ equals.
 		 */
 		for (AirEntry<K, V> e = table[i]; e != null; e = e.next) {
 			Object k;
@@ -385,10 +385,10 @@ public class AirHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Cl
 
 	private transient Set<Map.Entry<K, V>> entrySet = null;
 
-	//	public Set<K> keySet() {
-	//		Set<K> ks = keySet;
-	//		return (ks != null ? ks : (keySet = new KeySet()));
-	//	}
+	// public Set<K> keySet() {
+	// Set<K> ks = keySet;
+	// return (ks != null ? ks : (keySet = new KeySet()));
+	// }
 
 	private final class KeySet extends AbstractSet<K> {
 		public Iterator<K> iterator() {
@@ -412,10 +412,10 @@ public class AirHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Cl
 		}
 	}
 
-	//	public Collection<V> values() {
-	//		Collection<V> vs = values;
-	//		return (vs != null ? vs : (values = new Values()));
-	//	}
+	// public Collection<V> values() {
+	// Collection<V> vs = values;
+	// return (vs != null ? vs : (values = new Values()));
+	// }
 
 	private final class Values extends AbstractCollection<V> {
 		public Iterator<V> iterator() {
@@ -577,9 +577,7 @@ public class AirHashMap<K, V> extends AbstractMap<K, V> implements Map<K, V>, Cl
 		}
 
 		/**
-		 * This method is invoked whenever the value in an entry is overwritten
-		 * by an invocation of put(k,v) for a key k that's already in the
-		 * AirHashMap.
+		 * This method is invoked whenever the value in an entry is overwritten by an invocation of put(k,v) for a key k that's already in the AirHashMap.
 		 */
 		void recordAccess(AirHashMap<K, V> m) {
 		}
