@@ -4,6 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+/**
+ * @author feuyeux@gmail.com
+ * 2012-11-11
+ */
 public class AirJPAFactory {
 	private static AirJPAFactory instance;
 	private static EntityManagerFactory emf;

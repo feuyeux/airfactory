@@ -11,7 +11,10 @@ import org.junit.Test;
 import creative.air.jpa.AirJPAFactory;
 import creative.air.jpa.dao.jpql.UserJPQLDao;
 import creative.air.jpa.model.User;
-
+/**
+ * @author feuyeux@gmail.com
+ * 2012-11-11
+ */
 public class TestJPQL {
 	EntityManager em = AirJPAFactory.getInstance("air-jpa2-h2").getEntityManager();
 	UserJPQLDao dao = new UserJPQLDao(em);

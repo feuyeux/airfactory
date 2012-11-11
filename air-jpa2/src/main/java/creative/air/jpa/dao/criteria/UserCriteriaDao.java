@@ -9,7 +9,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import creative.air.jpa.model.User;
-
+/**
+ * @author feuyeux@gmail.com
+ * 2012-11-11
+ */
 public class UserCriteriaDao {
 	private EntityManager em;
 

@@ -15,9 +15,12 @@ import creative.air.jpa.AirJPAFactory;
 import creative.air.jpa.dao.criteria.UserCriteriaDao;
 import creative.air.jpa.model.Role;
 import creative.air.jpa.model.User;
-
+/**
+ * @author feuyeux@gmail.com
+ * 2012-11-11
+ */
 public class TestCriteria {
-//	EntityManager em = AirJPAFactory.getInstance("air-jpa2-mysql").getEntityManager();
+	//	EntityManager em = AirJPAFactory.getInstance("air-jpa2-mysql").getEntityManager();
 	EntityManager em = AirJPAFactory.getInstance("air-jpa2-h2").getEntityManager();
 	UserCriteriaDao dao = new UserCriteriaDao(em);
 	Role role1 = new Role("Admin");

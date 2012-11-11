@@ -12,7 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
+/**
+ * @author feuyeux@gmail.com
+ * 2012-11-11
+ */
 @Entity
 @Table(name = "AirUser")
 public class User implements Serializable {
