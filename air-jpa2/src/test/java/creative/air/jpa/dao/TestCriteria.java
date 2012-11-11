@@ -17,8 +17,9 @@ import creative.air.jpa.model.Role;
 import creative.air.jpa.model.User;
 
 public class TestCriteria {
-	EntityManager em = AirJPAFactory.getInstance().getEntityManager();
-	UserCriteriaDao dao = new UserCriteriaDao();
+//	EntityManager em = AirJPAFactory.getInstance("air-jpa2-mysql").getEntityManager();
+	EntityManager em = AirJPAFactory.getInstance("air-jpa2-h2").getEntityManager();
+	UserCriteriaDao dao = new UserCriteriaDao(em);
 	Role role1 = new Role("Admin");
 	Role role2 = new Role("Guest");
 	Role role3 = new Role("Git");

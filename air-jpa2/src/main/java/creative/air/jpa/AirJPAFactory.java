@@ -11,10 +11,10 @@ public class AirJPAFactory {
 	private AirJPAFactory() {
 	}
 
-	public synchronized static AirJPAFactory getInstance() {
+	public synchronized static AirJPAFactory getInstance(String unitName) {
 		if (instance == null) {
 			instance = new AirJPAFactory();
-			emf = Persistence.createEntityManagerFactory("air-jpa2");
+			emf = Persistence.createEntityManagerFactory(unitName);
 		}
 		return instance;
 	}

@@ -13,9 +13,8 @@ import creative.air.jpa.dao.jpql.UserJPQLDao;
 import creative.air.jpa.model.User;
 
 public class TestJPQL {
-
-	EntityManager em = AirJPAFactory.getInstance().getEntityManager();
-	UserJPQLDao dao = new UserJPQLDao();
+	EntityManager em = AirJPAFactory.getInstance("air-jpa2-h2").getEntityManager();
+	UserJPQLDao dao = new UserJPQLDao(em);
 
 	@Test
 	public void test() {
