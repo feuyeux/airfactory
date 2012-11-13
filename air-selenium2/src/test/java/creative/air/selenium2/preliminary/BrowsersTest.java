@@ -11,6 +11,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import creative.air.selenium2.drivers.ChromeFactory;
+import creative.air.selenium2.drivers.FirefoxFactory;
+import creative.air.selenium2.drivers.IEFactory;
+
 @RunWith(BlockJUnit4ClassRunner.class)
 public class BrowsersTest {
 	@Test
@@ -33,8 +37,9 @@ public class BrowsersTest {
 		} catch (Exception e) {
 			System.out.println(e);
 		} finally {
-			if (driver != null)
+			if (driver != null) {
 				driver.quit();
+			}
 		}
 	}
 

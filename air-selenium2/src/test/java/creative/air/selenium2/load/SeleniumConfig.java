@@ -1,4 +1,4 @@
-package creative.air.selenium2.preliminary;
+package creative.air.selenium2.load;
 
 import java.io.FileInputStream;
 import java.io.IOException;
