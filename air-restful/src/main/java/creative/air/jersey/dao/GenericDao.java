@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import org.springframework.orm.jpa.JpaCallback;
 import org.springframework.orm.jpa.support.JpaDaoSupport;
 import org.springframework.util.Assert;
+
 /**
  * 
  * @author
@@ -22,6 +23,7 @@ import org.springframework.util.Assert;
 @SuppressWarnings("unchecked")
 public class GenericDao<T, ID extends Serializable> extends JpaDaoSupport {
 	private Class<T> entityClass;
+
 	public GenericDao() {
 		this.entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
@@ -34,7 +36,6 @@ public class GenericDao<T, ID extends Serializable> extends JpaDaoSupport {
 	public List<T> findAll() {
 		final String queryString = "select model from " + entityClass.getSimpleName() + " model";
 		return (List<T>) getJpaTemplate().find(queryString);
-
 	}
 
 	public List<T> findByProperty(String propertyName, final Object value) {
@@ -107,19 +108,19 @@ public class GenericDao<T, ID extends Serializable> extends JpaDaoSupport {
 		return query;
 	}
 
-	public T save(T entity) {
-		return getJpaTemplate().merge(entity);
-
+	public void save(T entity) {
+		getJpaTemplate().persist(entity);
 	}
 
 	public void remove(T entity) {
-		getJpaTemplate().remove(save(entity));
+		getJpaTemplate().remove(entity);
 		// Note: you must synchronized the entity before removing it!
 	}
 
 	public T update(T entity) {
-		return getJpaTemplate().merge(entity);
-		// return entity;
+		T t = getJpaTemplate().merge(entity);
+		getJpaTemplate().flush();
+		return t;
 	}
 
 	@SuppressWarnings("unused")
@@ -150,5 +151,4 @@ public class GenericDao<T, ID extends Serializable> extends JpaDaoSupport {
 	public void setEntityClass(Class<T> entityClass) {
 		this.entityClass = entityClass;
 	}
-
 }

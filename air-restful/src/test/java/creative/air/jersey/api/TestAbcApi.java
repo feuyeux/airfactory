@@ -30,8 +30,8 @@ public class TestAbcApi {
 		String prefix = "classpath:";
 		String file1 = prefix + "applicationContext.xml";
 		String file2 = prefix + "applicationContext-persistence.xml";
-
-		String[] contextFiles = { file1, file2 };
+		String file3 = prefix + "applicationContext-transaction.xml";
+		String[] contextFiles = { file1, file2, file3 };
 		appContext = new ClassPathXmlApplicationContext(contextFiles);
 		String[] beanNames = appContext.getBeanDefinitionNames();
 		for (String beanname : beanNames) {
@@ -56,7 +56,13 @@ public class TestAbcApi {
 	}
 
 	@Test
-	public void testGet() throws Exception {
+	public void testGetAndPut() throws Exception {
+		AbcReturnDto abcDto = abcApi.get(Integer.valueOf(1));
+		assertNotNull("return must not be null", abcDto.getElement());
+	}
+
+	@Test
+	public void testGetAll() throws Exception {
 		AbcReturnDto rdto = abcApi.getAll();
 		List<AbcDto> list = rdto.getElementList();
 		for (AbcDto abc : list) {

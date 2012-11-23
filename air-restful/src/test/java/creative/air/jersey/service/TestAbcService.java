@@ -59,7 +59,6 @@ public class TestAbcService {
 		Calendar calendar = Calendar.getInstance();
 		Date d = calendar.getTime();
 		abcDto.setValue(f.format(d));
-		AbcDto abc = abcService.saveABC(abcDto);
-		org.junit.Assert.assertNotNull(abc);
+		abcService.saveABC(abcDto);
 	}
 }

@@ -45,8 +45,7 @@ public class TestAbcDao {
 		AbcEntity abc = new AbcEntity();
 		abc.setName("employee");
 		abc.setValue("hanl");
-		AbcEntity entity = abcDao.save(abc);
-		assertNotNull("entity could not be null", entity);
+		abcDao.save(abc);
 	}
 
 	@Test

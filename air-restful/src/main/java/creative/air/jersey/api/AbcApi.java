@@ -1,18 +1,22 @@
 package creative.air.jersey.api;
 
-import creative.air.jersey.model.AbcDto;
-import creative.air.jersey.model.AbcReturnDto;
-import creative.air.jersey.service.AbcService;
 import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import creative.air.jersey.model.AbcDto;
+import creative.air.jersey.model.AbcReturnDto;
+import creative.air.jersey.service.AbcService;
 
 /**
  * 
@@ -39,13 +43,37 @@ public class AbcApi {
 		}
 
 		try {
-			AbcDto AbcListCreated = abcService.saveABC(abcDto);
+			abcService.saveABC(abcDto);
 
-//			JSONConfiguration.mapped().attributeAsElement("id").build();
-//			JSONConfiguration.mapped().attributeAsElement("name").build();
-//			JSONConfiguration.mapped().attributeAsElement("value").build();
+			//			JSONConfiguration.mapped().attributeAsElement("id").build();
+			//			JSONConfiguration.mapped().attributeAsElement("name").build();
+			//			JSONConfiguration.mapped().attributeAsElement("value").build();
 
-			return (new AbcReturnDto(AbcListCreated));
+			return (new AbcReturnDto(abcDto));
+		} catch (Exception ex) {
+			_log.error("Cannot add new AbcRequest by TestFolder", ex);
+			return (new AbcReturnDto(1, "Cannot add new AbcRequest by TestFolder"));
+		}
+	}
+
+	@Path("/update")
+	@PUT
+	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+	public AbcReturnDto updateAbc(AbcDto abcDto) {
+		if (abcDto == null) {
+			return (new AbcReturnDto(1, "AbcDto data should not be null"));
+		}
+
+		try {
+			AbcDto abcUpdated = abcService.getABC(abcDto.getId());
+			if (abcUpdated == null) {
+				return (new AbcReturnDto(2, "AbcDto data can not find in system"));
+			}
+			//			abcUpdated.setName(abcDto.getName());
+			//			abcUpdated.setValue(abcDto.getValue());
+			abcService.updateABC(abcUpdated);
+			return new AbcReturnDto(abcUpdated);
 		} catch (Exception ex) {
 			_log.error("Cannot add new AbcRequest by TestFolder", ex);
 			return (new AbcReturnDto(1, "Cannot add new AbcRequest by TestFolder"));
@@ -54,7 +82,20 @@ public class AbcApi {
 
 	@Path("/get")
 	@GET
-	@Produces({ MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public AbcReturnDto get(Integer id) {
+		try {
+			AbcDto abc = abcService.getABC(id);
+			return (new AbcReturnDto(abc));
+		} catch (Exception ex) {
+			_log.error("Cannot add new AbcRequest by TestFolder");
+			return (new AbcReturnDto(1, "Cannot add new AbcRequest by TestFolder"));
+		}
+	}
+
+	@Path("/getAll")
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public AbcReturnDto getAll() {
 		try {
 			List<AbcDto> list = abcService.getAll();

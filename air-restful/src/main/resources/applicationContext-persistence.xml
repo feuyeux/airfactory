@@ -8,6 +8,6 @@
 
 	<description>Spring</description>
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="LocalMysqlScheduler" />
+		<property name="persistenceUnitName" value="LocalMysql" />
 	</bean>	
 </beans>

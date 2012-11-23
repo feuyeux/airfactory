@@ -3,10 +3,16 @@
         <title>The abc jersey Test</title>
     </head>
     <body>
-        <a href="restful/abc/get" target="_self">
+        <a href="restful/abc/getAll" target="_self">
             test abc get hypertext reference
         </a>
         <br/>
+        
+        <a href="abcEdit.html" target="_self">
+            abc edit
+        </a>
+        <br/>
+        
         <a href="abcList.html" target="_self">
             abcList
         </a>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>The abc Dojo DataGrid Test</title>
+
+<style>
+.formContainer {
+	width: 600px;
+	height: 600px;
+}
+
+label {
+	width: 150px;
+	float: left;
+}
+</style>
+<script type="text/javascript" src="dojo1.6.1/dojo/dojo.js"
+	djConfig="parseOnLoad:true"></script>
+<script type="text/javascript" src="js/postData.js"></script>
+<script type="text/javascript">
+	dojo.require("dojo.parser");
+	dojo.require("dijit.layout.ContentPane");
+	function add() {
+		var urlValue = "restful/abc/add";
+		var name = dojo.byId("abcname").value;
+		var value = dojo.byId("abcvalue").value;
+		var xmlData = buildAbcXml(name, value);
+		var xhrArgs = {
+			url : urlValue,
+			headers : {
+				"Content-Type" : "application/xml",
+				"Accept" : "application/json"
+			},
+			handleAs : 'json',
+			postData : xmlData,
+			// The success callback with result from server
+			load : function(data) {
+				console.log(data);
+			}
+		};
+		var deferred = dojo.xhrPost(xhrArgs);
+	}
+</script>
+</head>
+
+<body class="claro">
+	<form method="post">
+		<div dojoType="dijit.layout.ContentPane" title="Abc Data">
+			<label for="abcname">First Name:</label> <input type="text"
+				name="abcname" id="abcname" size="45" /><br /> <label
+				for="abcvalue">Last Name:</label> <input type="text" name="abcvalue"
+				id="abcvalue" size="45" /><br />
+		</div>
+		<button id="addButton" onclick="add()">add</button>
+	</form>
+</body>
+</html>
+
+
