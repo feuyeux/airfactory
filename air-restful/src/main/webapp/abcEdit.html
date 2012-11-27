@@ -1,60 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html >
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>The abc Dojo DataGrid Test</title>
 
-<style>
-.formContainer {
-	width: 600px;
-	height: 600px;
-}
-
-label {
-	width: 150px;
-	float: left;
-}
-</style>
-<script type="text/javascript" src="dojo1.6.1/dojo/dojo.js"
-	djConfig="parseOnLoad:true"></script>
-<script type="text/javascript" src="js/postData.js"></script>
-<script type="text/javascript">
-	dojo.require("dojo.parser");
-	dojo.require("dijit.layout.ContentPane");
-	function add() {
-		var urlValue = "restful/abc/add";
-		var name = dojo.byId("abcname").value;
-		var value = dojo.byId("abcvalue").value;
-		var xmlData = buildAbcXml(name, value);
-		var xhrArgs = {
-			url : urlValue,
-			headers : {
-				"Content-Type" : "application/xml",
-				"Accept" : "application/json"
-			},
-			handleAs : 'json',
-			postData : xmlData,
-			// The success callback with result from server
-			load : function(data) {
-				console.log(data);
-			}
-		};
-		var deferred = dojo.xhrPost(xhrArgs);
+<link rel="stylesheet"
+	href="dojo1.6.1/dijit/themes/claro/claro.css">
+	<script>
+	dojoConfig = {
+		parseOnLoad : true
 	}
 </script>
-</head>
+<script src='dojo1.6.1/dojo/dojo.js'></script>
+<script>
+dojo.require("dijit.form.Button");
+dojo.require("dijit.form.TextBox");
+dojo.require("dijit.form.CheckBox");
 
+function sendForm(){
+  var form = dojo.byId("myform");
+
+  dojo.connect(form, "onsubmit", function(event){
+    // Stop the submit event since we want to control form submission.
+    dojo.stopEvent(event);
+
+    // The parameters to pass to xhrPost, the form, how to handle it, and the callbacks.
+    // Note that there isn't a url passed.  xhrPost will extract the url to call from the form's
+    //'action' attribute.  You could also leave off the action attribute and set the url of the xhrPost object
+    // either should work.
+    var xhrArgs = {
+      form: dojo.byId("myform"),
+      handleAs: "text",
+      load: function(data){
+        dojo.byId("response").innerHTML = "Form posted.";
+      },
+      error: function(error){
+        // We'll 404 in the demo, but that's okay.  We don't have a 'postIt' service on the
+        // docs server.
+        dojo.byId("response").innerHTML = "Form posted.";
+      }
+    }
+    // Call the asynchronous xhrPost
+    dojo.byId("response").innerHTML = "Form being sent..."
+    var deferred = dojo.xhrPost(xhrArgs);
+  });
+}
+dojo.ready(sendForm);</script>
+</head>
 <body class="claro">
-	<form method="post">
-		<div dojoType="dijit.layout.ContentPane" title="Abc Data">
-			<label for="abcname">First Name:</label> <input type="text"
-				name="abcname" id="abcname" size="45" /><br /> <label
-				for="abcvalue">Last Name:</label> <input type="text" name="abcvalue"
-				id="abcvalue" size="45" /><br />
-		</div>
-		<button id="addButton" onclick="add()">add</button>
-	</form>
+    <b>Simple Form:</b>
+<br>
+<blockquote>
+  <form action="postIt" id="myform">
+    Text: <input type="text" data-dojo-type="dijit.form.TextBox" name="formInput" value="Some text"></input><br><br>
+    Checkbox: <input type="checkbox" data-dojo-type="dijit.form.CheckBox" name="checkboxInput"></input><br><br>
+    <button type="submit" data-dojo-type="dijit.form.Button" id="submitButton">Send it!</button>
+  </form>
+</blockquote>
+<br>
+<b>Result</b>
+<div id="response"></div>
 </body>
 </html>
-
-
