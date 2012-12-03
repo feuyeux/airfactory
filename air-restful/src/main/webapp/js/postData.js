@@ -19,5 +19,13 @@ function buildAbcXml(name,value) {
 	"</abc>";
 	xmlData = xmlData.replace('__name__', name);
 	xmlData = xmlData.replace('__value__', value);
-	return(xmlData);
+	return xmlData;
 }
+
+function buildAbcJson(name,value) {
+	var abcJSONObject = {};
+	abcJSONObject["id"]="";
+	abcJSONObject["name"]=name;abcJSONObject["value"]=value;
+	return abcJSONObject;
+}
+
