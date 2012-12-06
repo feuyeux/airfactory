@@ -70,10 +70,8 @@ public class AbcApi {
 			if (abcUpdated == null) {
 				return (new AbcReturnDto(2, "AbcDto data can not find in system"));
 			}
-			//			abcUpdated.setName(abcDto.getName());
-			//			abcUpdated.setValue(abcDto.getValue());
-			abcService.updateABC(abcUpdated);
-			return new AbcReturnDto(abcUpdated);
+			abcService.updateABC(abcDto);
+			return new AbcReturnDto(abcDto);
 		} catch (Exception ex) {
 			_log.error("Cannot add new AbcRequest by TestFolder", ex);
 			return (new AbcReturnDto(1, "Cannot add new AbcRequest by TestFolder"));

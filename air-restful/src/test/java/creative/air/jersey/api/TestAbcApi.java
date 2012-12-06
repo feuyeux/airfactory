@@ -69,5 +69,4 @@ public class TestAbcApi {
 			assertNotNull("return must not be null", abc);
 		}
 	}
-
 }

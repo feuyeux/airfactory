@@ -35,6 +35,7 @@ public class AbcService {
 
 	private AbcEntity dto2Entity(AbcDto abcDto) {
 		AbcEntity abc = new AbcEntity();
+		abc.setId(abcDto.getId());
 		abc.setName(abcDto.getName());
 		abc.setValue(abcDto.getValue());
 		return abc;

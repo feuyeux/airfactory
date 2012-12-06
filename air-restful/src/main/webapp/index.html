@@ -1,91 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="generator" content="HTML Tidy, see www.w3.org">
-<meta charset="utf-8">
-<title>The abc jersey Test</title>
-<!-- CDN 
-http://dojotoolkit.org/reference-guide/1.8/dojo/xhrGet.html
-<link type="text/css" rel="stylesheet" href=
-"//ajax.googleapis.com/ajax/libs/dojo/1.8.1/dijit/themes/tundra/tundra.css">
-<script type="text/javascript" src=
-"//ajax.googleapis.com/ajax/libs/dojo/1.8.1/dojo/dojo.js">
-</script>-->
-
-<!-- local -->
-<link rel="stylesheet" href="dojo1.8.1/dijit/themes/tundra/tundra.css">
-<script src="dojo1.8.1/dojo/dojo.js"></script>
-
-<!-- set Dojo configuration, load Dojo -->
-<script type="text/javascript">
-    dojoConfig = {
-        has : {
-            "dojo-firebug" : true
-        },
-        parseOnLoad : false,
-        async : true
-    };
-</script>
-
-<script type="text/javascript" src="js/postData.js">
-</script>
-</head>
-<body class="tundra">
-<div id="resultDiv"></div>
-
-<p>Post:</p>
-
-<form id="formNode">
-<div><label>Abc Name:</label> <input id="abcname" type="text" name=
-"abcname"></div>
-
-<div><label>Abc Value:</label> <input id="abcvalue" type="text"
-name="abcvalue"></div>
-
-<button type="submit" id="postButton">Generate</button></form>
-
-<script type="text/javascript">
-
-    require(["dojo/dom", "dojo/on", "dojo/request", "dojo/dom-form"],
-            function(dom, on, request, domForm){
-                var form = dom.byId('formNode');
-
-                // Attach the onsubmit event handler of the form
-                on(form, "submit", function(evt){
-
-                    // prevent the page from navigating after submit
-                    evt.stopPropagation();
-                    evt.preventDefault();
-
-                    var abcname=dom.byId("abcname").value;
-                    var abcvalue=dom.byId("abcvalue").value;
-                    
-                    var abcData =buildAbcJson(abcname,abcvalue);
-                    var addUrl = "restful/abc/add";
-                    
-                    // Post the data to the server
-                    request.post(addUrl, {
-                            headers : {
-                                "Content-Type" : "application/xml",
-                                "Accept" : "application/json"
-                            },
-                            handleAs : 'json',
-                            
-                            postData : dojo.toJson(abcData),
-                            timeout : 2000
-                        }).then(
-                                function(response) {
-                                    dom.byId('resultDiv').innerHTML = response;
-                                },
-                                function(error) {
-                                    // Display the error returned
-                                    dom.byId('resultDiv').innerHTML = "<div class=\"error\">" + error + "<div>";
-                                });
-                });
-            }
-        );
- 
-</script>
-</body>
+	<head>
+		<meta name="generator" content="HTML Tidy, see www.w3.org">
+		<meta charset="utf-8">
+		<title>The abc jersey Test</title>
+	</head>
+	<body>
+		<a href="testRequest.html" target="_self">Request test</a><br/>
+		<a href="testGet.html" target="_self">GET test</a><br/>
+		<a href="testPost3.html" target="_self">POST test</a><br/>
+		<a href="testPut.html" target="_self">PUT test</a><br/>
+		<a href="toJson.html" target="_self">toJSON test</a><br/>
+	</body>
 </html>
-

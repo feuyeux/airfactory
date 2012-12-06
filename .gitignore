@@ -1,4 +1,5 @@
 .settings
+dojo1.8.1
 target
 .classpath
 .DS_Store
@@ -10,4 +11,3 @@ nb-configuration.xml
 Thumbs.db
 /JsfJpa/nbproject/private/
 /JsfJpa/build/
-/dojo1.8.1/

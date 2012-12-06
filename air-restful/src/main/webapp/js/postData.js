@@ -1,31 +1,24 @@
-function buildAbcXml(id,name,value) {
-	var xmlData = 
-	"<abc>" +
-	"<id>__id__</id>"+
-	"<name>__name__</name>"+
-	"<value>__value__</value>"+
-	"</abc>";
+function buildAbcXml(id, name, value) {
+	var xmlData = "<abc>" + "<id>__id__</id>" + "<name>__name__</name>"
+			+ "<value>__value__</value>" + "</abc>";
 	xmlData = xmlData.replace('__id__', id);
 	xmlData = xmlData.replace('__name__', name);
 	xmlData = xmlData.replace('__value__', value);
-	return(xmlData);
+	return (xmlData);
 }
 
-function buildAbcXml(name,value) {
-	var xmlData = 
-	"<abc>" +
-	"<name>__name__</name>"+
-	"<value>__value__</value>"+
-	"</abc>";
+function buildAbcXml(name, value) {
+	var xmlData = "<abc>" + "<name>__name__</name>"
+			+ "<value>__value__</value>" + "</abc>";
 	xmlData = xmlData.replace('__name__', name);
 	xmlData = xmlData.replace('__value__', value);
-	return xmlData;
+	return (xmlData);
 }
 
-function buildAbcJson(name,value) {
+function buildAbcJson(name, value) {
 	var abcJSONObject = {};
-	abcJSONObject["id"]="";
-	abcJSONObject["name"]=name;abcJSONObject["value"]=value;
+	abcJSONObject["id"] = "";
+	abcJSONObject["name"] = name;
+	abcJSONObject["value"] = value;
 	return abcJSONObject;
 }
-
