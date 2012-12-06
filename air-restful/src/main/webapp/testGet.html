@@ -1,80 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="generator" content="HTML Tidy, see www.w3.org">
 <meta charset="utf-8">
 <title>The abc jersey Test</title>
-
 <!-- CDN 
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/dojo/1.8.1/dijit/themes/tundra/tundra.css">
 <script src="//ajax.googleapis.com/ajax/libs/dojo/1.8.1/dojo/dojo.js"></script>
 -->
-
 <!-- local -->
-<link rel="stylesheet" href="dojo1.8.1/dijit/themes/tundra/tundra.css">
-<script src="dojo1.8.1/dojo/dojo.js"></script>
-
-
-<!-- set Dojo configuration, load Dojo -->
-<script>
-	dojoConfig = {
-		has : {
-			"dojo-firebug" : true
-		},
-		parseOnLoad : false,
-		foo : "bar",
-		async : true
-	};
+<link type="text/css" rel="stylesheet" href=
+"dojo1.8.1/dijit/themes/tundra/tundra.css">
+<script type="text/javascript" src="dojo1.8.1/dojo/dojo.js">
 </script>
 
-<script type="text/javascript" src="js/postData.js"></script>
-<script>
-	var jsonUrl = "performanceXmlv1.2.json";
-	var getAllUrl = "restful/abc/getAll";
-	var addUrl = "restful/abc/add";
-	/*
-	require([ "dojo/request" ], function(request) {
-		request(getAllUrl).then(function(text) {
-			console.log("The file's contents is: " + text);
-		}, function(error) {
-			console.log("An error occurred: " + error);
-		});
-	});
-	 */
+<!-- set Dojo configuration, load Dojo -->
+<script type="text/javascript">
+    dojoConfig = {
+        has : {
+            "dojo-firebug" : true
+        },
+        parseOnLoad : false,
+        foo : "bar",
+        async : true
+    };
+</script>
 
-	require([ "dojo/dom", "dojo/on", "dojo/request", "dojo/domReady!" ],
-			function(dom, on, request) {
-				// Results will be displayed in resultDiv
-				var resultDiv = dom.byId("resultDiv");
+<script type="text/javascript" src="js/postData.js">
+</script>
 
-				// Attach the onclick event handler to the textButton
-				on(dom.byId("textButton"), "click", function(evt) {
-					// Request the text file
-					request.get(getAllUrl,{
+<script type="text/javascript">
+    var jsonUrl = "performanceXmlv1.2.json";
+    var getAllUrl = "restful/abc/getAll";
+    var addUrl = "restful/abc/add";
+    /*
+    require([ "dojo/request" ], function(request) {
+        request(getAllUrl).then(function(text) {
+            console.log("The file's contents is: " + text);
+        }, function(error) {
+            console.log("An error occurred: " + error);
+        });
+    });
+     */
+
+    require([ "dojo/dom", "dojo/on", "dojo/request", "dojo/domReady!" ],
+            function(dom, on, request) {
+                // Results will be displayed in resultDiv
+                var resultDiv = dom.byId("resultDiv");
+
+                // Attach the onclick event handler to the textButton
+                on(dom.byId("textButton"), "click", function(evt) {
+                    // Request the text file
+                    request.get(getAllUrl,{
 headers : {
-	"Content-Type" : "application/xml",
-	"Accept" : "application/json"
+    "Content-Type" : "application/xml",
+    "Accept" : "application/json"
 },
 handleAs : 'json'
-						}).then(
-							function(response) {
-								// Display the text file content
-								resultDiv.innerHTML = response;
-							},
-							function(error) {
-								// Display the error returned
-								resultDiv.innerHTML = "<div class=\"error\">"
-										+ error + "<div>";
-							});
-				});
-			});
+                        }).then(
+                            function(response) {
+                                // Display the text file content
+                                resultDiv.innerHTML = response;
+                            },
+                            function(error) {
+                                // Display the error returned
+                                resultDiv.innerHTML = "<div class=\"error\">"
+                                        + error + "<div>";
+                            });
+                });
+            });
 
-	 
-	 </script>
+     
+     
+</script>
+
 <!-- and later in the page -->
 </head>
 <body class="tundra">
-	<div id="resultDiv"></div>
-	<p>Get:</p>
-	<input type="button" id="textButton" value="getAllUrl button"></input>
+<div id="resultDiv"></div>
+
+<p>Get:</p>
+
+<input type="button" id="textButton" value="getAllUrl button">
 </body>
 </html>
+

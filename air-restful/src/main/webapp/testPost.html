@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
+<meta name="generator" content="HTML Tidy, see www.w3.org">
+<link type="text/css" rel="stylesheet" href=
+"../_static/js/dojo/../dijit/themes/claro/claro.css">
+<script type="text/javascript">
+dojoConfig = {parseOnLoad: true}
+</script>
 
-	<link rel="stylesheet" href="../_static/js/dojo/../dijit/themes/claro/claro.css">
-	
-<script>dojoConfig = {parseOnLoad: true}</script><script src='../_static/js/dojo/dojo.js'></script><script>dojo.require("dijit.form.Button");
+<script type="text/javascript" src='../_static/js/dojo/dojo.js'>
+</script>
+
+<script type="text/javascript">
+dojo.require("dijit.form.Button");
 dojo.require("dijit.form.TextBox");
 dojo.require("dijit.form.CheckBox");
 
@@ -36,21 +44,31 @@ function sendForm(){
     var deferred = dojo.xhrPost(xhrArgs);
   });
 }
-dojo.ready(sendForm);</script>
+dojo.ready(sendForm);
+</script>
+
+<title></title>
 </head>
 <body class="claro">
-    <b>Simple Form:</b>
-<br>
+<b>Simple Form:</b> <br>
 <blockquote>
-  <form action="postIt" id="myform">
-    Text: <input type="text" data-dojo-type="dijit/form/TextBox" name="formInput" value="Some text"></input><br><br>
-    Checkbox: <input type="checkbox" data-dojo-type="dijit/form/CheckBox" name="checkboxInput"></input><br><br>
-    <button type="submit" data-dojo-type="dijit/form/Button" id="submitButton">Send it!</button>
-  </form>
-</blockquote>
+<form action="postIt" id="myform">Text: <input type="text"
+data-dojo-type="dijit/form/TextBox" name="formInput" value=
+"Some text"><br>
 <br>
-<b>Result</b>
+ Checkbox: <input type="checkbox" data-dojo-type=
+"dijit/form/CheckBox" name="checkboxInput"><br>
+<br>
+ <button type="submit" data-dojo-type="dijit/form/Button" id=
+"submitButton">Send it!</button></form>
+</blockquote>
+
+<br>
+<b>Result</b> 
+
 <div id="response"></div>
+
 http://dojotoolkit.org/reference-guide/1.8/dojo/xhrPost.html
 </body>
 </html>
+

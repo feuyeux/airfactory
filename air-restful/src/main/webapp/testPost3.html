@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
+<meta name="generator" content="HTML Tidy, see www.w3.org">
+<link type="text/css" rel="stylesheet" href=
+"../_static/js/dojo/../dijit/themes/claro/claro.css">
+<script type="text/javascript">
+dojoConfig = {parseOnLoad: true}
+</script>
 
-	<link rel="stylesheet" href="../_static/js/dojo/../dijit/themes/claro/claro.css">
-	
-<script>dojoConfig = {parseOnLoad: true}</script><script src='../_static/js/dojo/dojo.js'></script><script>dojo.require("dijit.form.Button");
+<script type="text/javascript" src='../_static/js/dojo/dojo.js'>
+</script>
+
+<script type="text/javascript">
+dojo.require("dijit.form.Button");
 
 function sendText(){
   var button = dijit.byId("submitButton2");
@@ -30,16 +38,20 @@ function sendText(){
     var deferred = dojo.xhrPost(xhrArgs);
   });
 }
-dojo.ready(sendText);</script>
+dojo.ready(sendText);
+</script>
+
+<title></title>
 </head>
 <body class="claro">
-    <b>Push the button to POST some JSON.</b>
+<b>Push the button to POST some JSON.</b> <br>
 <br>
+<button data-dojo-type="dijit/form/Button" id="submitButton2">Send
+it!</button> <br>
 <br>
-<button data-dojo-type="dijit/form/Button" id="submitButton2">Send it!</button>
-<br>
-<br>
-<b>Result</b>
+<b>Result</b> 
+
 <div id="response2"></div>
 </body>
 </html>
+
