@@ -55,7 +55,6 @@ public class TestAbcApi {
 		assertNotNull("return must not be null", rdto.getElement());
 	}
 
-	@Test
 	public void testGetAndPut() throws Exception {
 		AbcReturnDto abcDto = abcApi.get(Integer.valueOf(1));
 		assertNotNull("return must not be null", abcDto.getElement());
