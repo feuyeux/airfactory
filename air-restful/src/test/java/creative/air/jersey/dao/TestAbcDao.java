@@ -4,57 +4,52 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
+import org.apache.log4j.Logger;
 import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.annotation.Rollback;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import creative.air.jersey.model.AbcEntity;
+import creative.air.jersey.model.AbcDto;
+
 /**
  * 
  * @author
  * Eric Han feuyeux@gmail.com
- * 05/08/2012
+ * 10/12/2012
  * @since  0.0.1
  * @version 0.0.1
  */
+@ContextConfiguration(locations = { "classpath:applicationContext.xml", "classpath:applicationContext-persistence.xml",
+		"classpath:applicationContext-persistence.xml" })
+@RunWith(SpringJUnit4ClassRunner.class)
 public class TestAbcDao {
+	private Logger logger = Logger.getLogger(this.getClass());
+	@Autowired
 	protected AbcDao abcDao;
-	protected ClassPathXmlApplicationContext appContext;
-
-	@Before
-	public void tearUp() {
-		String prefix = "classpath:";
-		String file1 = prefix + "applicationContext.xml";
-		String file2 = prefix + "applicationContext-persistence.xml";
-		String[] contextFiles = { file1, file2 };
-		appContext = new ClassPathXmlApplicationContext(contextFiles);
-		abcDao = (AbcDao) appContext.getBean("abcDao");
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		appContext.close();
-		abcDao = null;
-	}
-
-	@Test
-	@Rollback(false)
-	public void testSave() {
-		AbcEntity abc = new AbcEntity();
-		abc.setName("employee");
-		abc.setValue("hanl");
-		abcDao.save(abc);
-	}
 
 	@Test
 	public void testFindAll() {
-		List<AbcEntity> abcs = abcDao.findAll();
-		for (AbcEntity abc : abcs) {
+		List<AbcDto> abcs = abcDao.findAll1();
+		for (AbcDto abc : abcs) {
 			assertNotNull("entity could not be null", abc);
-			System.out.println(abc);
+			logger.debug(abc);
 		}
 	}
 
+	@Test
+	public void testCreateAll() {
+		List<AbcDto> abcs = abcDao.findAll1();
+		for (AbcDto abc : abcs) {
+			assertNotNull("entity could not be null", abc);
+			logger.debug(abc);
+		}
+
+		int[] count = abcDao.insertAll2(abcs);
+
+		for (int i : count) {
+			logger.debug(i);
+		}
+	}
 }

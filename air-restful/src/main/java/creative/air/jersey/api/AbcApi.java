@@ -2,10 +2,7 @@ package creative.air.jersey.api;
 
 import java.util.List;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -29,78 +26,39 @@ import creative.air.jersey.service.AbcService;
 @Component()
 @Path("/abc")
 public class AbcApi {
-	private Logger _log = Logger.getLogger(this.getClass());
+	private Logger logger = Logger.getLogger(this.getClass());
 	@Autowired
 	private AbcService abcService;
 
-	@Path("/add")
-	@POST
-	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public AbcReturnDto addAbc(AbcDto abcDto) {
-		if (abcDto == null) {
-			return (new AbcReturnDto(1, "AbcDto data should not be null"));
-		}
-
-		try {
-			abcService.saveABC(abcDto);
-
-			//			JSONConfiguration.mapped().attributeAsElement("id").build();
-			//			JSONConfiguration.mapped().attributeAsElement("name").build();
-			//			JSONConfiguration.mapped().attributeAsElement("value").build();
-
-			return (new AbcReturnDto(abcDto));
-		} catch (Exception ex) {
-			_log.error("Cannot add new AbcRequest by TestFolder", ex);
-			return (new AbcReturnDto(1, "Cannot add new AbcRequest by TestFolder"));
-		}
+	@Path("/transfer")
+	@GET
+	public void transfer() {
+		abcService.transferAll();
 	}
 
-	@Path("/update")
-	@PUT
-	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public AbcReturnDto updateAbc(AbcDto abcDto) {
-		if (abcDto == null) {
-			return (new AbcReturnDto(1, "AbcDto data should not be null"));
-		}
-
-		try {
-			AbcDto abcUpdated = abcService.getABC(abcDto.getId());
-			if (abcUpdated == null) {
-				return (new AbcReturnDto(2, "AbcDto data can not find in system"));
-			}
-			abcService.updateABC(abcDto);
-			return new AbcReturnDto(abcDto);
-		} catch (Exception ex) {
-			_log.error("Cannot add new AbcRequest by TestFolder", ex);
-			return (new AbcReturnDto(1, "Cannot add new AbcRequest by TestFolder"));
-		}
-	}
-
-	@Path("/get")
+	@Path("/getAll1")
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public AbcReturnDto get(Integer id) {
+	public AbcReturnDto getAll1() {
 		try {
-			AbcDto abc = abcService.getABC(id);
-			return (new AbcReturnDto(abc));
-		} catch (Exception ex) {
-			_log.error("Cannot add new AbcRequest by TestFolder");
-			return (new AbcReturnDto(1, "Cannot add new AbcRequest by TestFolder"));
-		}
-	}
-
-	@Path("/getAll")
-	@GET
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public AbcReturnDto getAll() {
-		try {
-			List<AbcDto> list = abcService.getAll();
+			List<AbcDto> list = abcService.findAll1();
 			return (new AbcReturnDto(list));
 		} catch (Exception ex) {
-			_log.error("Cannot add new AbcRequest by TestFolder");
-			return (new AbcReturnDto(1, "Cannot add new AbcRequest by TestFolder"));
+			logger.error("error in getAll1");
+			return (new AbcReturnDto(1, "error in getAll1"));
+		}
+	}
+
+	@Path("/getAll2")
+	@GET
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public AbcReturnDto getAll2() {
+		try {
+			List<AbcDto> list = abcService.findAll2();
+			return (new AbcReturnDto(list));
+		} catch (Exception ex) {
+			logger.error("error in getAll2");
+			return (new AbcReturnDto(1, "error in getAll2"));
 		}
 	}
 }

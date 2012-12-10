@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
-       	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName" default-lazy-init="true">
+	
+	<bean id="dataSource1" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="${jdbc.db1.url}" />
+		<property name="user" value="${jdbc.db1.username}" />
+		<property name="password" value="${jdbc.db1.password}" />
+	</bean>
 
-	<description>Spring</description>
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="LocalMysql" />
-	</bean>	
+	<bean id="dataSource2" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="${jdbc.db2.url}" />
+		<property name="user" value="${jdbc.db2.username}" />
+		<property name="password" value="${jdbc.db2.password}" />
+	</bean>
+	<context:property-placeholder location="classpath:restful_jdbc.properties" />
+
+	<bean id="dynamicDataSource" class="creative.air.jersey.db.datasource.DynamicDataSource">
+		<property name="targetDataSources">
+			<map>
+				<entry value-ref="dataSource1" key="dataSource1"></entry>
+				<entry value-ref="dataSource2" key="dataSource2"></entry>
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dataSource1" />
+	</bean>
 </beans>

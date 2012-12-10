@@ -35,10 +35,6 @@ public class AbcDto {
 		return id;
 	}
 
-	// @XmlElement(name="id")
-	// public Integer getId1() {
-	// return id;
-	// }
 
 	@XmlAttribute
 	public String getName() {

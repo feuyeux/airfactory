@@ -1,16 +1,82 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="generator" content="HTML Tidy, see www.w3.org">
-		<meta charset="utf-8">
-		<title>The abc jersey Test</title>
-		<link rel="stylesheet" href="webjars/bootstrap/2.2.1/css/bootstrap.css">
-	</head>
-	<body>
-		<a href="testRequest.html" target="_self">Request test</a><br/>
-		<a href="testGet.html" target="_self">GET test</a><br/>
-		<a href="testPost3.html" target="_self">POST test</a><br/>
-		<a href="testPut.html" target="_self">PUT test</a><br/>
-		<a href="toJson.html" target="_self">toJSON test</a><br/>
-	</body>
+<head>
+<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta charset="utf-8">
+<title>The abc jersey Test</title>
+<script type="text/javascript">
+dojoConfig = {parseOnLoad: true}
+</script>
+
+<!-- local -->
+<link rel="stylesheet" href="webjars/bootstrap/2.2.1/css/bootstrap.css">
+<link rel="stylesheet" href="webjars/dojo/1.8.1/dijit/themes/tundra/tundra.css">
+<script src="webjars/dojo/1.8.1/dojo/dojo.js"></script>
+
+<script type="text/javascript">
+    var getAllUrl = "restful/abc/getAll2";
+    var transferUrl = "restful/abc/transfer";
+    require([ "dojo/dom", "dojo/on", "dojo/request", "dojo/domReady!" ],
+            function(dom, on, request) {
+                   var resultDiv = dom.byId("resultDiv");
+                on(dom.byId("btn"), "click", function(evt) {
+                         request.get(getAllUrl,{
+                        	 headers: { "Content-Type": "application/json; charset=utf-8" , "Accept" : "application/json; charset=utf-8"},
+                             handleAs: "json"
+                        }).then(
+                            function(response) {
+								var abcList = response.elementList;
+								resultDiv.innerHTML="";
+								for ( var n in abcList) {
+									var abc=abcList[n];
+									var id= abc.id;
+									var name = abc.name;
+									var value= abc.value;
+									resultDiv.innerHTML +=id+" : "+name+" : "+value+"<br/>";
+								}
+                            },
+                            function(error) {
+                                // Display the error returned
+                                resultDiv.innerHTML = "<div class=\"error\">"
+                                        + error + "<div>";
+                            });
+                });
+                on(dom.byId("btn2"), "click", function(evt) {
+                    request.get(transferUrl,{
+                   	 headers: { "Content-Type": "application/json; charset=utf-8" , "Accept" : "application/json; charset=utf-8"},
+                        handleAs: "json"
+                   }).then(
+                       function(response) {
+							var abcList = response.elementList;
+							resultDiv.innerHTML="";
+							for ( var n in abcList) {
+								var abc=abcList[n];
+								var id= abc.id;
+								var name = abc.name;
+								var value= abc.value;
+								resultDiv.innerHTML +=id+" : "+name+" : "+value+"<br/>";
+							}
+                       },
+                       function(error) {
+                           // Display the error returned
+                           resultDiv.innerHTML = "<div class=\"error\">"
+                                   + error + "<div>";
+                       });
+           });
+            });   
+</script>
+</head>
+<body class="tundra">
+	<div id="btn2">
+	<button id="textButton2" data-dojo-type="dijit/form/Button">Transfer!</button><br />
+	</div>
+	
+	<p>Get:</p>
+	<div id="btn">
+	<button id="textButton" data-dojo-type="dijit/form/Button">Get it!</button><br />
+	</div>
+	<div id="resultDiv"></div>
+	<a href="index.html" target="_self">Go Home</a>
+	<br />
+</body>
 </html>
