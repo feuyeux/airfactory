@@ -1,16 +1,15 @@
 package creative.air.xml;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashSet;
 
 import org.junit.Test;
 
-import creative.air.xml.AbcDto;
-import creative.air.xml.CbaDto;
-import creative.air.xml.Parser;
+import creative.air.xml.jaxb.AbcDto;
+import creative.air.xml.jaxb.CbaDto;
+import creative.air.xml.jaxb.JaxbParser;
+
 /**
  * @author
  * Eric Han feuyeux@gmail.com
@@ -19,12 +18,12 @@ import creative.air.xml.Parser;
  * @version 0.0.1
  */
 public class ParserTest {
-	private String XML_FILE = "abc.xml";
+	private String XML_FILE = "/abc.xml";
 
 	@Test
 	public void testUnmarshal() throws FileNotFoundException {
-		InputStream xmlInput = new FileInputStream(new File(XML_FILE));
-		AbcDto abcDto = (AbcDto) Parser.unmarshal(xmlInput, AbcDto.class);
+		InputStream xmlInput = this.getClass().getResourceAsStream(XML_FILE);
+		AbcDto abcDto = (AbcDto) JaxbParser.unmarshal(xmlInput, AbcDto.class);
 		System.out.println(abcDto);
 	}
 
@@ -37,7 +36,7 @@ public class ParserTest {
 		set.add(o1);
 		set.add(o2);
 		abc.setCbas(set);
-		String result = Parser.marshal(abc, AbcDto.class);
+		String result = JaxbParser.marshal(abc, AbcDto.class);
 		System.out.println(result);
 	}
 }

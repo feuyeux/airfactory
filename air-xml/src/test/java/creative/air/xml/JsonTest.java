@@ -10,8 +10,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import creative.air.xml.AbcDto;
-import creative.air.xml.CbaDto;
+import creative.air.xml.jaxb.AbcDto;
+import creative.air.xml.jaxb.CbaDto;
 /**
  * @author
  * Eric Han feuyeux@gmail.com

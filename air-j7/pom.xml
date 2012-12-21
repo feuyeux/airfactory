@@ -8,22 +8,15 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>air-xml</artifactId>
+	<artifactId>air-j7</artifactId>
 	<packaging>jar</packaging>
-	<name>Air XML Project</name>
+	<name>Air JDK7 Project</name>
 
 	<dependencies>
-		<!-- jaxb -->
 		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb</artifactId>
-			<version>${jaxb.version}</version>
-		</dependency>
-		<!-- Jackson -->
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-xc</artifactId>
-			<version>${jackson.version}</version>
+			<groupId>org.apache.mina</groupId>
+			<artifactId>mina-core</artifactId>
+			<version>1.1.5</version><!-- 2.0.6 -->
 		</dependency>
 	</dependencies>
 	<build>

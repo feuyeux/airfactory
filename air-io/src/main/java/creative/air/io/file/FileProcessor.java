@@ -1,10 +1,13 @@
 package creative.air.io.file;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -117,29 +120,33 @@ public class FileProcessor {
 		p.close();
 	}
 
+	public void printToFile1(String name, StringBuilder content) throws FileNotFoundException, UnsupportedEncodingException {
+		try (BufferedWriter out = new BufferedWriter(new FileWriter(name))) {
+			out.write(content.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public ArrayList<String> readFileBufferedReader(String path) throws IOException {
 		ArrayList<String> contentList = new ArrayList<String>();
 		BufferedReader bufferReader = new BufferedReader(new InputStreamReader(new FileInputStream(path), "utf-8"));
 		String temp = null;
-		temp = bufferReader.readLine();
-		while (temp != null) {
+		while ((temp = bufferReader.readLine()) != null) {
 			contentList.add(temp.trim());
-			temp = bufferReader.readLine();
 		}
 		bufferReader.close();
 		return contentList;
 	}
 
 	public HashMap<String, String> readFileBufferedReader(String path, String separator) throws IOException {
-		HashMap<String, String> contentMap = new HashMap<String, String>();
-		BufferedReader bufferReader = new BufferedReader(new InputStreamReader(new FileInputStream(path), "utf-8"));
+		HashMap<String, String> contentMap = new HashMap<>();
+		BufferedReader bufferReader = new BufferedReader(new FileReader(path));
 		String temp = null;
-		temp = bufferReader.readLine();
-		while (temp != null) {
+		while ((temp = bufferReader.readLine()) != null) {
 			temp = temp.trim();
 			String[] kv = temp.split(separator);
 			contentMap.put(kv[0], kv[1]);
-			temp = bufferReader.readLine();
 		}
 		bufferReader.close();
 		return contentMap;
