@@ -13,6 +13,11 @@
 		<module>air-schedule</module>
 		<module>air-xml</module>
 		<module>air-jpa2</module>
+		<module>air-datastructure</module>
+		<module>air-restful</module>
+		<module>air-schedule</module>
+		<module>air-selenium2</module>
+		<!--<module>air-io</module>-->
 	</modules>
 
 	<properties>
