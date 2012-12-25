@@ -1,0 +1,80 @@
+http://www.websequencediagrams.com
+
+architecture:
+
+parallel {
+	HTML+Dojo->+Jersey: Restful webservice
+		note right of HTML+Dojo
+			Ajax:
+			synchronized
+			asynchronized
+		end note
+	Jersey->JDBC/JPA:Spring
+		note right of Jersey: api ->service -> dao
+	JDBC/JPA->+Mysql/H2:Connection Pool(c3p0)
+	Mysql/H2-->-JDBC/JPA:{return data}
+	JDBC/JPA-->-Jersey:{return model}
+	Jersey-->-HTML+Dojo:{return json/xml}
+	HTML+Dojo->HTML+Dojo:
+		note right of HTML+Dojo:update DOM
+}
+
+continuous integration:
+parallel {
+	note right of DevEnv:development
+	DevEnv->DevEnv:
+		note right of DevEnv
+			Unit Test:
+			junit
+			Maven TU* test
+		end note
+
+	DevEnv->DevEnv:launch Jetty/tomcat and deploy the module
+		note right of DevEnv
+			Integration Test:
+			Maven TI* test
+			Web GUI test(selenium)
+			Restful webservice interface test(soapUI)
+		end note
+
+	DevEnv->DevEnv:launch Jetty/tomcat and deploy all modules
+		note right of DevEnv
+			System Test:
+			Maven TS* test
+			QA test(Nightly Build)
+		end note
+
+	DevEnv->Nexus: mvn install
+		note right of DevEnv:publish modules
+
+
+	DevEnv->Gitolite:ssh
+		note right of DevEnv:poll/commit/push
+
+	Gitolite->+Gitolite:hook
+
+	Gitolite->-Jenkins/Hudson:http
+		note right of Gitolite:notify source code updated
+
+	Jenkins/Hudson->+Jenkins/Hudson:
+	Jenkins/Hudson->-Jenkins/Hudson:trigger
+
+	Jenkins/Hudson->+Gitolite:ssh
+		note left of Jenkins/Hudson:get source code
+	Gitolite-->-Jenkins/Hudson:{return source code}
+
+	Jenkins/Hudson->+Nexus:mvn install
+		note right of Nexus:download modules' dependent jars
+	Nexus-->-Jenkins/Hudson:{return dependencies}
+
+	Jenkins/Hudson->+Jenkins/Hudson:build, local deploy and test all
+	Jenkins/Hudson->Jenkins/Hudson:Gerrit(Code Review)
+	Jenkins/Hudson->Jenkins/Hudson:Cobertura(Code Quality Governance)
+	Jenkins/Hudson->-Jenkins/Hudson:Sonar(Code Quality Governance) 
+
+	Jenkins/Hudson-->DevEnv:{email/chart reports}
+	Jenkins/Hudson-->StagingEnv:Optional:deploy all
+	Jenkins/Hudson-->ProductionEnv:Optional:deploy all
+}
+
+Scrum::DailyScrum-Iteration/Sprint-Grooming-Retrospective-RallyDev
