@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:rich="http://richfaces.org/rich" xmlns:f="http://java.sun.com/jsf/core">
+
+	<rich:panel id="paginationPanel" style="border:none;padding:0;margin-top:2px">
+
+		<a4j:commandButton id="firstNav" value="First" action="#{paginationBean.first}" disabled="#{paginationBean.disabledFirst}" render="#{rendpart}"
+			style="margin-right:0px;cursor: pointer;" />
+
+		<a4j:commandButton id="prevNav" value="Previous" action="#{paginationBean.previous}" disabled="#{paginationBean.disabledFirst}" render="#{rendpart}"
+			style="margin-left:5px;margin-right:5px;cursor: pointer;" />
+
+		<h:panelGroup id="pageGroup" style="font-weight:bold;#{paginationBean.pageCount==1?'display:none;':''}">
+			<h:selectOneMenu id="pageNav" styleClass="shorter_width" value="#{paginationBean.pageIndex}">
+				<f:selectItems value="#{paginationBean.pageNumberItems}" />
+				<f:ajax event="change" listener="#{paginationBean.flipover}" render="#{rendpart}" />
+			</h:selectOneMenu>
+			<h:outputText value=" / #{paginationBean.pageCount} " />
+		</h:panelGroup>
+
+		<a4j:commandButton id="nextNav" value="Next" action="#{paginationBean.next}" disabled="#{paginationBean.disabledLast}" render="#{rendpart}"
+			style="margin-left:5px;margin-right:5px;cursor: pointer;" />
+
+		<a4j:commandButton id="lastNav" value="Last" action="#{paginationBean.last}" disabled="#{paginationBean.disabledLast}" render="#{rendpart}"
+			style="margin-left:0px;cursor: pointer;" />
+	</rich:panel>
+</ui:composition>

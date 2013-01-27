@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<title>JavaServer Faces 分页</title>
+	<style>
+.firstCol {
+	width: 25%;
+}
+
+.secondCol {
+	color: 50%;
+}
+
+.thirdCol {
+	width: 25%;
+}
+</style>
+</h:head>
+
+<h:body>
+	<h:form id="tableForm">
+		<rich:panel style="width:80%;height:500px">
+			<rich:dataTable id="dt" style="width:100%" rows="#{onePagination.pageSize}" value="#{onePagination.showList}" var="yi" rowClasses="oddrow,evenrow"
+				columnClasses="firstCol,secondCol,thirdCol" border="0">
+				<h:column id="firstColumn">
+					<f:facet name="header">
+					 序号
+				</f:facet>
+					<h:outputText value="#{yi.sequence}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+					名称
+				</f:facet>
+					<h:outputText value="#{yi.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+					读音
+				</f:facet>
+					<h:outputText value="#{yi.pronounce}" />
+				</h:column>
+			</rich:dataTable>
+		</rich:panel>
+		<ui:include src="pagingbarv1.xhtml">
+			<ui:param name="paginationBean" value="#{onePagination}" />
+			<ui:param name="rendpart" value="tableForm" />
+		</ui:include>
+		<ui:include src="pagingbarv2.xhtml">
+			<ui:param name="paginationBean" value="#{onePagination}" />
+			<ui:param name="rendpart" value="tableForm" />
+		</ui:include>
+		
+		<a4j:commandButton value="删除测试" action="#{onePagination.removeMore}" render="tableForm paginationPanel paginationPanel2"/>
+		<a4j:commandButton value="恢复" action="#{onePagination.restore}" render="tableForm paginationPanel paginationPanel2"/>
+	</h:form>
+	<br />
+	<h:link value="返回" outcome="/welcome" />
+</h:body>
+</html>
