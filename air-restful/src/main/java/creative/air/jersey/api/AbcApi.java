@@ -51,8 +51,8 @@ public class AbcApi {
 
 			return (new AbcReturnDto(abcDto));
 		} catch (Exception ex) {
-			_log.error("Cannot add new AbcRequest by TestFolder", ex);
-			return (new AbcReturnDto(1, "Cannot add new AbcRequest by TestFolder"));
+			_log.error("Cannot add new AbcRequest", ex);
+			return (new AbcReturnDto(1, "Cannot add new AbcRequest:" + ex.getLocalizedMessage()));
 		}
 	}
 
@@ -73,8 +73,8 @@ public class AbcApi {
 			abcService.updateABC(abcDto);
 			return new AbcReturnDto(abcDto);
 		} catch (Exception ex) {
-			_log.error("Cannot add new AbcRequest by TestFolder", ex);
-			return (new AbcReturnDto(1, "Cannot add new AbcRequest by TestFolder"));
+			_log.error("Cannot add new AbcRequest", ex);
+			return (new AbcReturnDto(1, "Cannot add new AbcRequest:" + ex.getLocalizedMessage()));
 		}
 	}
 
@@ -86,8 +86,8 @@ public class AbcApi {
 			AbcDto abc = abcService.getABC(id);
 			return (new AbcReturnDto(abc));
 		} catch (Exception ex) {
-			_log.error("Cannot add new AbcRequest by TestFolder");
-			return (new AbcReturnDto(1, "Cannot add new AbcRequest by TestFolder"));
+			_log.error("Cannot add new AbcRequest", ex);
+			return (new AbcReturnDto(1, "Cannot add new AbcRequest:" + ex.getLocalizedMessage()));
 		}
 	}
 
@@ -99,8 +99,8 @@ public class AbcApi {
 			List<AbcDto> list = abcService.getAll();
 			return (new AbcReturnDto(list));
 		} catch (Exception ex) {
-			_log.error("Cannot add new AbcRequest by TestFolder");
-			return (new AbcReturnDto(1, "Cannot add new AbcRequest by TestFolder"));
+			_log.error("Cannot add new AbcRequest", ex);
+			return (new AbcReturnDto(1, "Cannot add new AbcRequest:" + ex.getLocalizedMessage()));
 		}
 	}
 }

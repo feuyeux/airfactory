@@ -1,16 +1,58 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="generator" content="HTML Tidy, see www.w3.org">
-		<meta charset="utf-8">
-		<title>The abc jersey Test</title>
-		<link rel="stylesheet" href="webjars/bootstrap/2.2.1/css/bootstrap.css">
-	</head>
-	<body>
-		<a href="testRequest.html" target="_self">Request test</a><br/>
-		<a href="testGet.html" target="_self">GET test</a><br/>
-		<a href="testPost3.html" target="_self">POST test</a><br/>
-		<a href="testPut.html" target="_self">PUT test</a><br/>
-		<a href="toJson.html" target="_self">toJSON test</a><br/>
-	</body>
+<head>
+<meta name="generator" content="HTML Tidy, see www.w3.org">
+<meta charset="utf-8">
+<title>The abc jersey Test</title>
+
+<script type="text/javascript">
+dojoConfig = {parseOnLoad: true}
+</script>
+<!-- CDN -->
+<link type="text/css" rel="stylesheet" href=
+"//ajax.googleapis.com/ajax/libs/dojo/1.8.1/dijit/themes/tundra/tundra.css">
+<script type="text/javascript" src=
+"//ajax.googleapis.com/ajax/libs/dojo/1.8.1/dojo/dojo.js">
+</script>
+
+<!-- local
+<link rel="stylesheet" href="webjars/bootstrap/2.2.1/css/bootstrap.css">
+<link rel="stylesheet" href="webjars/dojo/1.8.1/dijit/themes/tundra/tundra.css">
+<script src="webjars/dojo/1.8.1/dojo/dojo.js"></script>
+ -->
+</head>
+<body>
+	<a href="testRequest.html" target="_self">Request test</a>
+	<br />
+	<a href="testGet.html" target="_self">GET test</a>
+	<br />
+	<a href="testPost3.html" target="_self">POST test</a>
+	<br />
+	<a href="testPut.html" target="_self">PUT test</a>
+	<br />
+	<a href="toJson.html" target="_self">toJSON test</a>
+	<br />
+	<div id="resultDiv" />
+</body>
+<script type="text/javascript">
+	dojo.ready(function() {
+		// Look up the node we'll stick the text under.
+		var resultDiv = dojo.byId("resultDiv");
+
+		// The parameters to pass to xhrGet, the url, how to handle it, and the callbacks.
+		var xhrArgs = {
+			url : "air-restful-setting.json",
+			handleAs : "json",
+			load : function(data) {
+				resultDiv.innerHTML = "version="+data.version+" switch1="+data.switch1;
+			},
+			error : function(error) {
+				resultDiv.innerHTML = "An unexpected error occurred: " + error;
+			}
+		}
+
+		// Call the asynchronous xhrGet
+		var deferred = dojo.xhrGet(xhrArgs);
+	});
+</script>
 </html>
