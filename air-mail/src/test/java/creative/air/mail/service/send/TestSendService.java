@@ -17,7 +17,7 @@ public class TestSendService {
 		sender.send(mailUser, mailUser, "test", "test");
 	}
 
-	@Test
+	//@Test
 	public void test163Send() throws Exception {
 		String server = "smtp.163.com";
 		String username = "feuyeux@163.com";

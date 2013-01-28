@@ -24,6 +24,12 @@ public class ImapService extends ReceiveService {
 		props.setProperty("mail.store.protocol", "imap");
 		props.setProperty("mail.debug", "false");
 		props.setProperty("mail.imap.host", server);
+		
+		/*java.net.ConnectException: Connection timed out: connect
+		props.setProperty("proxySet","true"); 
+		props.setProperty("http.proxyHost","10.11.70.71"); 
+		props.setProperty("http.proxyPort","80");*/
+
 
 		if (mustUseSSL()) {
 			String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
