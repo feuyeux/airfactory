@@ -1,4 +1,4 @@
-﻿package creative.air.datastructure.map;
+package creative.air.datastructure.map;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,6 +25,7 @@ import org.junit.Test;
  * @since  0.0.1
  * @version 0.0.1
  */
+/*
 public class HashMapTest {
 	static final Logger logger = Logger.getLogger(HashMapTest.class.getName());
 
@@ -65,10 +66,6 @@ public class HashMapTest {
 		Assert.assertTrue((Long) r1[0] >= (Long) r2[0]);
 	}
 
-	/**
-	 * @param level 
-	 * 
-	 */
 	private Object[] iterate(HashMapCache<String, Integer> map, Level level) {
 		Iterator<Map.Entry<String, Integer>> iter = map.entrySet().iterator();
 		long startTime = System.currentTimeMillis();
@@ -108,4 +105,4 @@ public class HashMapTest {
 			logger.log(Level.INFO, "{0}:{1}", new Object[] { key, val });
 		}
 	}
-}
+}*/
