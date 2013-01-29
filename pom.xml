@@ -11,7 +11,9 @@
 	<modules>
 		<module>air-concurrent</module>
 		<module>air-schedule</module>
+		<!-- jdk1.7
 		<module>air-xml</module>
+		-->
 		<module>air-jpa2</module>
 		<module>air-datastructure</module>
 		<module>air-restful</module>
