@@ -28,7 +28,7 @@ import org.junit.Test;
 public class HashMapTest {
 	static final Logger logger = Logger.getLogger(HashMapTest.class.getName());
 
-	@Test
+	//@Test
 	public void test2() throws Exception {
 		HashMapCache<String, Integer> cacheMap = new HashMapCache<String, Integer>();
 		cacheMap.clear();
@@ -38,7 +38,7 @@ public class HashMapTest {
 		Assert.assertNull(cacheMap.get(null));
 	}
 
-	@Test
+	//@Test
 	public void test5() {
 		int n = 0;
 		final int maxium = 5000;
@@ -82,7 +82,7 @@ public class HashMapTest {
 		return new Object[] { endTime - startTime, endTime, startTime };
 	}
 	
-	@Test
+	//@Test
 	public void testPutAll(){
 		HashMap<String,String> map=new HashMap<String,String>();
 		HashMap<String,HashMap<String,String>> map2=new HashMap<String,HashMap<String,String>>();
