@@ -13,12 +13,15 @@
 		<module>air-schedule</module>
 		<!-- jdk1.7
 		<module>air-xml</module>
+		<module>air-j7</module>
 		-->
 		<module>air-jpa2</module>
 		<module>air-datastructure</module>
 		<module>air-restful</module>
+		<module>air-security</module>
 		<module>air-mail</module>
-		<module>air-selenium2</module>
+		<module>air-io</module>
+		<!--<module>air-selenium2</module>-->
 	</modules>
 
 	<properties>
