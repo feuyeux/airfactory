@@ -1,5 +1,6 @@
 .settings
 dojo1.8.1
+bin
 target
 .classpath
 .DS_Store

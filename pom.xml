@@ -15,7 +15,8 @@
 		<module>air-datastructure</module>
 		<module>air-restful</module>
 		<module>air-security</module>
-		<module>air-mail</module>		
+		<module>air-mail</module>
+		<module>air-xmlrpc</module>		
 		<!--<module>air-selenium2</module>-->
 		<!-- jdk1.7
 		<module>air-xml</module>
@@ -119,6 +120,18 @@
 
 	<repositories>
 		<repository>
+			<id>repo1</id>
+			<name>repo1</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+		
+		<repository>
+			<id>central</id>
+			<name>Central Maven Repository</name>
+			<url>http://search.maven.org/</url>
+		</repository>
+
+		<repository>
 			<id>springsource-repo</id>
 			<name>SpringSource Repository</name>
 			<url>http://repo.springsource.org/release</url>
@@ -149,12 +162,6 @@
 			<id>jvnet-nexus</id>
 			<name>jvnet-nexus</name>
 			<url>https://maven.java.net/content/repositories/releases/</url>
-		</repository>
-
-		<repository>
-			<id>repo1</id>
-			<name>repo1</name>
-			<url>http://repo1.maven.org/maven2/</url>
 		</repository>
 
 		<repository>
