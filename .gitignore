@@ -9,6 +9,8 @@ target
 .idea
 jsfrf.iml
 nb-configuration.xml
-Thumbs.db
 /JsfJpa/nbproject/private/
 /JsfJpa/build/
+.7z
+.zip
+.xml~
