@@ -1,5 +1,6 @@
 package creative.air.schedule.dbreport;
 
+import org.junit.Ignore;
 import org.junit.Test;
 /**
  * @author feuyeux@gmail.com
