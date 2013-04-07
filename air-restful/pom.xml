@@ -101,7 +101,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>${artifactId}-${version}</finalName>
+		<finalName>${project.groupId}-${project.version}</finalName>
 		<directory>${basedir}/target</directory>
 
 		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
