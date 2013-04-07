@@ -5,6 +5,7 @@ import org.junit.Test;
  * @author feuyeux@gmail.com
  * 2012-11-11
  */
+ @Ignore
 public class TestRetrieveAndCalculate {
 
 	@Test
