@@ -1,16 +1,15 @@
 package creative.air.schedule.quartz;
 
-import static org.quartz.CronScheduleBuilder.cronSchedule;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.TriggerBuilder.newTrigger;
-
 import java.util.Date;
 
+import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
+import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerFactory;
 import org.quartz.SchedulerMetaData;
+import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,20 +22,32 @@ public class AirCronTrigger {
 	}
 
 	public void runTask() throws Exception {
+		JobBuilder jb = org.quartz.JobBuilder.newJob(SimpleJob.class).withIdentity("job1", "group1");
+		JobDetail job = jb.build();
+
+		/**
+		 * 		1. Seconds
+		 * 		2. Minutes
+		 * 		3. Hours
+		 * 		4. Day-of-Month
+		 * 		5. Month
+		 * 		6. Day-of-Week
+		 * 		7. Year (optional field)
+		 * 	*/
+		CronScheduleBuilder schedBuilder = org.quartz.CronScheduleBuilder.cronSchedule("0/2 * * * * ?");
+		TriggerBuilder<CronTrigger> tb = org.quartz.TriggerBuilder.newTrigger().withIdentity("trigger1", "group1").withSchedule(schedBuilder);
+		CronTrigger trigger = tb.build();
+
 		SchedulerFactory sf = new StdSchedulerFactory();
 		Scheduler sched = sf.getScheduler();
-
-		JobDetail job = newJob(SimpleJob.class).withIdentity("job1", "group1").build();
-		CronTrigger trigger = newTrigger().withIdentity("trigger1", "group1").withSchedule(cronSchedule("0/2 * * * * ?")).build();
 		Date ft = sched.scheduleJob(job, trigger);
-		log.info(job.getKey() + " has been scheduled:" + ft + " expression: " + trigger.getCronExpression());
 
+		log.info(job.getKey() + " has been scheduled:" + ft + " expression: " + trigger.getCronExpression());
 		sched.start();
 		try {
-			Thread.sleep(60L * 1000L);
+			Thread.sleep(12 * 1000L);
 		} catch (Exception e) {
 		}
-
 		sched.shutdown(true);
 
 		SchedulerMetaData metaData = sched.getMetaData();
