@@ -10,7 +10,8 @@
 
 	<modules>
 		<module>air-concurrent</module>
-		<module>air-schedule</module>
+		<module>air-schedule1</module>
+		<module>air-schedule2</module>
 		<module>air-jpa2</module>
 		<module>air-datastructure</module>
 		<module>air-restful</module>
@@ -27,8 +28,6 @@
 
 	<properties>
 		<junit.version>4.10</junit.version>
-		<quartz.version>2.1.6</quartz.version>
-
 		<jaxb.version>2.1.9</jaxb.version>
 		<jackson.version>1.9.9</jackson.version>
 
