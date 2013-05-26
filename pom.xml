@@ -17,7 +17,8 @@
 		<module>air-restful</module>
 		<module>air-security</module>
 		<module>air-mail</module>
-		<module>air-xmlrpc</module>		
+		<module>air-xmlrpc</module>
+		<module>air-mq</module>
 		<!--<module>air-selenium2</module>-->
 		<!-- jdk1.7
 		<module>air-xml</module>
