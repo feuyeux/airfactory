@@ -16,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import creative.air.jersey.model.AbcDto;
+
 /**
  * 
  * @author
@@ -29,7 +30,8 @@ import creative.air.jersey.model.AbcDto;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestAbcService {
 	private Logger _log = Logger.getLogger(this.getClass());
-	@Autowired AbcService abcService;
+	@Autowired
+	AbcService abcService;
 	SimpleDateFormat f = new SimpleDateFormat("yyMMdd.HHMMSS");
 
 	@Test

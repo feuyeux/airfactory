@@ -55,6 +55,7 @@ public class DelayedQueueTest {
 			if (other == this) // compare zero ONLY if same object
 				return 0;
 			if (other instanceof DelayItem) {
+				@SuppressWarnings("rawtypes")
 				DelayItem x = (DelayItem) other;
 				long diff = time - x.time;
 				if (diff < 0)

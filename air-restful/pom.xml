@@ -17,13 +17,13 @@
 		<dependency>
 			<groupId>com.sun.jersey.contribs</groupId>
 			<artifactId>jersey-spring</artifactId>
-			<version>${jersey.version}</version>
+			<version>${jersey.spring.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-json</artifactId>
-			<version>${jersey.version}</version>
+			<version>${jersey.spring.version}</version>
 		</dependency>
 
 		<!-- spring -->
@@ -56,13 +56,19 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
-			<version>${hibernate.version}</version>
+			<version>3.5.6-Final</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-api</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
 		</dependency>
 
 		<dependency>
@@ -83,20 +89,15 @@
 			<version>1.8.1</version>
 		</dependency>
 
-<!--
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>2.2.1</version>
-		</dependency>
--->
+		<!-- <dependency> <groupId>org.webjars</groupId> <artifactId>bootstrap</artifactId> 
+			<version>2.2.1</version> </dependency> -->
 
-<dependency>
-    <groupId>de.javakaffee.msm</groupId>
-    <artifactId>msm-kryo-serializer</artifactId>
-    <version>1.6.0</version>
-    <scope>runtime</scope>
-</dependency>
+		<dependency>
+			<groupId>de.javakaffee.msm</groupId>
+			<artifactId>msm-kryo-serializer</artifactId>
+			<version>1.6.0</version>
+			<scope>runtime</scope>
+		</dependency>
 
 	</dependencies>
 
