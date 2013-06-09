@@ -46,7 +46,7 @@ public class TestAbcApi {
 		abcApi = null;
 	}
 
-	@Test
+	@Test(timeout=5000)
 	public void testPost() throws Exception {
 		AbcDto abcDto = new AbcDto();
 		abcDto.setName("api_name");
