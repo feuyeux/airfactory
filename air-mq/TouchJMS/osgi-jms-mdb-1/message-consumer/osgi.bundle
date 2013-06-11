@@ -1,0 +1,2 @@
+# This header not only identifies a bundle as an EJB bundle, it also tells what EJBs to be exported.
+Export-EJB: NONE

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>airfactory</artifactId>
@@ -31,6 +30,10 @@
 					<groupId>org.springframework</groupId>
 					<artifactId>spring-beans</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -41,7 +44,16 @@
 		</dependency>
 
 		<!-- spring -->
-
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -52,7 +64,11 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-Web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
@@ -122,7 +138,8 @@
 	</dependencies>
 
 	<build>
-		<finalName>${project.groupId}-${project.version}</finalName>
+		<!-- <finalName>${project.groupId}-${project.version}</finalName> -->
+		<finalName>air-restful</finalName>
 		<directory>${basedir}/target</directory>
 
 		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
@@ -157,8 +174,9 @@
 						<encoding>utf-8</encoding>
 						<classpathContainers>
 							<classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
-							<classpathContainer>org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache
-								Tomcat v7.0</classpathContainer>
+							<classpathContainer>
+								org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0
+							</classpathContainer>
 							<classpathContainer>org.eclipse.jst.j2ee.internal.web.container/artifact</classpathContainer>
 						</classpathContainers>
 					</configuration>
@@ -166,7 +184,7 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-    <properties>
-        <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
-    </properties>
+	<properties>
+		<netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
+	</properties>
 </project>

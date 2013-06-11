@@ -1,0 +1,54 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+  http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.4.2.xsd">
+
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>file:${activemq.base}/conf/credentials.properties</value>
+		</property>
+	</bean>
+
+	<broker xmlns="http://activemq.apache.org/schema/core"
+		brokerName="localhost" dataDirectory="${activemq.base}/data"
+		destroyApplicationContextOnStop="true">
+		<destinationPolicy>
+			<policyMap>
+				<policyEntries>
+					<policyEntry topic=">" producerFlowControl="true"
+						memoryLimit="1mb">
+						<pendingSubscriberPolicy>
+							<vmCursor />
+						</pendingSubscriberPolicy>
+					</policyEntry>
+
+					<policyEntry queue=">" producerFlowControl="true"
+						memoryLimit="1mb">
+					</policyEntry>
+				</policyEntries>
+			</policyMap>
+		</destinationPolicy>
+
+		<destinations>
+			<topic name="topic1" physicalName="jms.topic1" />
+			<queue name="LoanRequestQ" physicalName="jms.LoanRequestQ" />
+			<queue name="LoanResponseQ" physicalName="jms.LoanResponseQ" />
+			<topic name="RateTopic" physicalName="jms.RateTopic" />
+			<queue name="queue1" physicalName="jms.queue1" />
+		</destinations>
+
+		<managementContext>
+			<managementContext createConnector="false" />
+		</managementContext>
+
+		<persistenceAdapter>
+			<kahaDB directory="${activemq.base}/data/kahadb" />
+		</persistenceAdapter>
+
+		<transportConnectors>
+			<transportConnector name="openwire" uri="tcp://0.0.0.0:61616" />
+		</transportConnectors>
+	</broker>
+	<import resource="jetty.xml" />
+</beans>

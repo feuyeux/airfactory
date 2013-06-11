@@ -1,0 +1,258 @@
+﻿十一月 23, 2011 11:14:19 下午 com.sun.enterprise.admin.launcher.GFLauncherLogger info
+信息: JVM invocation command line:
+D:\Program Files\Java\jdk1.7.0\bin\java.exe
+-cp
+D:/-aquarius/glassfish3/glassfish/modules/glassfish.jar
+-XX:+UnlockDiagnosticVMOptions
+-XX:MaxPermSize=192m
+-XX:NewRatio=2
+-Xmx512m
+-javaagent:D:/-aquarius/glassfish3/glassfish/lib/monitor/flashlight-agent.jar
+-client
+-Dfelix.fileinstall.disableConfigSave=false
+-Djavax.net.ssl.keyStore=D:\-aquarius\glassfish3\glassfish\domains\domain1/config/keystore.jks
+-Djava.awt.headless=true
+-Dfelix.fileinstall.poll=5000
+-Djava.endorsed.dirs=D:\-aquarius\glassfish3\glassfish/modules/endorsed;D:\-aquarius\glassfish3\glassfish/lib/endorsed
+-Dfelix.fileinstall.bundles.startTransient=true
+-Djavax.net.ssl.trustStore=D:\-aquarius\glassfish3\glassfish\domains\domain1/config/cacerts.jks
+-Dcom.sun.enterprise.security.httpsOutboundKeyAlias=s1as
+-DANTLR_USE_DIRECT_CLASS_LOADING=true
+-Djava.security.auth.login.config=D:\-aquarius\glassfish3\glassfish\domains\domain1/config/login.conf
+-Dgosh.args=--nointeractive
+-Dosgi.shell.telnet.maxconn=1
+-Djdbc.drivers=org.apache.derby.jdbc.ClientDriver
+-Dfelix.fileinstall.dir=D:\-aquarius\glassfish3\glassfish/modules/autostart/
+-Dosgi.shell.telnet.port=6666
+-Djava.security.policy=D:\-aquarius\glassfish3\glassfish\domains\domain1/config/server.policy
+-Dfelix.fileinstall.log.level=2
+-Dcom.sun.enterprise.config.config_environment_factory_class=com.sun.enterprise.config.serverbeans.AppserverConfigEnvironmentFactory
+-Dosgi.shell.telnet.ip=127.0.0.1
+-Dcom.sun.aas.instanceRoot=D:\-aquarius\glassfish3\glassfish\domains\domain1
+-Dcom.sun.aas.installRoot=D:\-aquarius\glassfish3\glassfish
+-Djava.ext.dirs=D:\Program Files\Java\jdk1.7.0/lib/ext;D:\Program Files\Java\jdk1.7.0/jre/lib/ext;D:\-aquarius\glassfish3\glassfish\domains\domain1/lib/ext
+-Dfelix.fileinstall.bundles.new.start=true
+-Dorg.glassfish.additionalOSGiBundlesToStart=org.apache.felix.shell,org.apache.felix.gogo.runtime,org.apache.felix.gogo.shell,org.apache.felix.gogo.command,org.apache.felix.fileinstall
+-Djava.library.path=D:/-aquarius/glassfish3/glassfish/lib;D:/Program Files/Java/jdk1.7.0/bin;C:/Windows/Sun/Java/bin;C:/Windows/System32;C:/Windows;D:/Program Files/Java/jdk1.7.0/jre/bin;C:/Program Files/NVIDIA Corporation/PhysX/Common;C:/Program Files/Common Files/microsoft shared/Windows Live;D:/-aquarius/Python27;D:/-aquarius/Python27/Scripts;C:/Program Files/PC Connectivity Solution;C:/Windows/System32/wbem;C:/Windows/System32/WindowsPowerShell/v1.0;C:/Program Files/ATI Technologies/ATI.ACE/Core-Static;C:/Program Files;C:/Program Files/Windows Live/Shared;E:/unison/Gtk/bin;D:/-aquarius/apache-ant-1.8.1/bin;D:/-aquarius/apache-cxf-2.3.1/bin;D:/-aquarius/apache-maven-3.0.2/bin;D:/-aquarius/cobertura-1.9.4.1;D:/-aquarius/gwt-2.2.0;C:/Program Files/Common Files/Thunder Network/KanKan/Codecs;D:/-aquarius/MySQL/mysql5.5/bin;D:/Program Files/Java/jdk1.6.0_26/bin;D:/Program Files/TortoiseGit/bin;D:/Program Files/TortoiseSVN/bin;D:/Program Files/QuickTime/QTSystem;C:/Users/Administrator/AppData/Roaming/Python/Scripts;D:/GNUstep/mingw/bin;D:/GNUstep/GNUstep/System/Tools;C:/Users/Administrator/AppData/Local/Temp/java_ee_sdk-6u3-windows.exe2
+com.sun.enterprise.glassfish.bootstrap.ASMain
+-domainname
+domain1
+-asadmin-args
+--host,,,localhost,,,--port,,,4848,,,--secure=false,,,--terse=false,,,--echo=false,,,--interactive=false,,,start-domain,,,--verbose=false,,,--debug=false,,,--domaindir,,,D:\-aquarius\glassfish3\glassfish\domains,,,domain1
+-instancename
+server
+-verbose
+false
+-debug
+false
+-asadmin-classpath
+D:/-aquarius/glassfish3/glassfish/modules/admin-cli.jar
+-asadmin-classname
+com.sun.enterprise.admin.cli.AsadminMain
+-upgrade
+false
+-type
+DAS
+-domaindir
+D:/-aquarius/glassfish3/glassfish/domains/domain1
+-read-stdin
+true
+十一月 23, 2011 11:14:19 下午 com.sun.enterprise.admin.launcher.GFLauncherLogger info
+信息: Successfully launched in 17 msec.
+[#|2011-11-23T23:14:26.771+0800|INFO|null|null|_ThreadID=1;_ThreadName=Thread-2;|Running GlassFish Version: GlassFish Server Open Source Edition 3.1.1 (build 12)|#]
+
+[#|2011-11-23T23:14:26.771+0800|WARNING|null|null|_ThreadID=1;_ThreadName=Thread-2;|Record begin marker is not a proper value so using default.|#]
+
+[#|2011-11-23T23:14:26.771+0800|WARNING|null|null|_ThreadID=1;_ThreadName=Thread-2;|Record end marker is not a proper value so using default.|#]
+
+[#|2011-11-23T23:14:26.772+0800|WARNING|null|null|_ThreadID=1;_ThreadName=Thread-2;|Log Format field separator is not a character so using default.|#]
+
+[#|2011-11-23T23:14:27.046+0800|INFO|glassfish3.1.1|org.glassfish.ha.store.spi.BackingStoreFactoryRegistry|_ThreadID=1;_ThreadName=Thread-2;|Registered org.glassfish.ha.store.adapter.cache.ShoalBackingStoreProxy for persistence-type = replicated in BackingStoreFactoryRegistry|#]
+
+[#|2011-11-23T23:14:27.450+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.com.sun.enterprise.v3.services.impl|_ThreadID=31;_ThreadName=Thread-2;|Grizzly Framework 1.9.36 started in: 175ms - bound to [0.0.0.0:7676]|#]
+
+[#|2011-11-23T23:14:27.451+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.com.sun.enterprise.v3.services.impl|_ThreadID=30;_ThreadName=Thread-2;|Grizzly Framework 1.9.36 started in: 199ms - bound to [0.0.0.0:8181]|#]
+
+[#|2011-11-23T23:14:27.450+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.com.sun.enterprise.v3.services.impl|_ThreadID=29;_ThreadName=Thread-2;|Grizzly Framework 1.9.36 started in: 232ms - bound to [0.0.0.0:8080]|#]
+
+[#|2011-11-23T23:14:27.452+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.com.sun.enterprise.v3.services.impl|_ThreadID=33;_ThreadName=Thread-2;|Grizzly Framework 1.9.36 started in: 195ms - bound to [0.0.0.0:4848]|#]
+
+[#|2011-11-23T23:14:27.451+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.com.sun.enterprise.v3.services.impl|_ThreadID=32;_ThreadName=Thread-2;|Grizzly Framework 1.9.36 started in: 184ms - bound to [0.0.0.0:3700]|#]
+
+[#|2011-11-23T23:14:27.579+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.com.sun.enterprise.v3.server|_ThreadID=1;_ThreadName=Thread-2;|GlassFish Server Open Source Edition 3.1.1 (12) startup time : Felix (5,957ms), startup services(1,197ms), total(7,154ms)|#]
+
+[#|2011-11-23T23:14:28.400+0800|INFO|glassfish3.1.1|javax.enterprise.system.tools.admin.org.glassfish.server|_ThreadID=40;_ThreadName=Thread-2;|JMXStartupService: Started JMXConnector, JMXService URL = service:jmx:rmi://mars-amd640:8686/jndi/rmi://mars-amd640:8686/jmxrmi|#]
+
+[#|2011-11-23T23:16:38.154+0800|INFO|glassfish3.1.1|null|_ThreadID=48;_ThreadName=Thread-2;|Domain Pinged: release.javaeesdk.sun.com|#]
+
+十一月 26, 2011 2:27:57 上午 com.sun.enterprise.admin.launcher.GFLauncherLogger info
+信息: JVM invocation command line:
+D:\Program Files\Java\jdk1.7.0\bin\java.exe
+-cp
+D:/-aquarius/glassfish3/glassfish/modules/glassfish.jar
+-XX:+UnlockDiagnosticVMOptions
+-XX:MaxPermSize=192m
+-XX:NewRatio=2
+-Xmx512m
+-javaagent:D:/-aquarius/glassfish3/glassfish/lib/monitor/flashlight-agent.jar
+-client
+-Dfelix.fileinstall.disableConfigSave=false
+-Djavax.net.ssl.keyStore=D:\-aquarius\glassfish3\glassfish\domains\domain1/config/keystore.jks
+-Djava.awt.headless=true
+-Dfelix.fileinstall.poll=5000
+-Djava.endorsed.dirs=D:\-aquarius\glassfish3\glassfish/modules/endorsed;D:\-aquarius\glassfish3\glassfish/lib/endorsed
+-Dfelix.fileinstall.bundles.startTransient=true
+-Djavax.net.ssl.trustStore=D:\-aquarius\glassfish3\glassfish\domains\domain1/config/cacerts.jks
+-Dcom.sun.enterprise.security.httpsOutboundKeyAlias=s1as
+-DANTLR_USE_DIRECT_CLASS_LOADING=true
+-Djava.security.auth.login.config=D:\-aquarius\glassfish3\glassfish\domains\domain1/config/login.conf
+-Dgosh.args=--nointeractive
+-Dosgi.shell.telnet.maxconn=1
+-Djdbc.drivers=org.apache.derby.jdbc.ClientDriver
+-Dfelix.fileinstall.dir=D:\-aquarius\glassfish3\glassfish/modules/autostart/
+-Dosgi.shell.telnet.port=6666
+-Djava.security.policy=D:\-aquarius\glassfish3\glassfish\domains\domain1/config/server.policy
+-Dfelix.fileinstall.log.level=2
+-Dcom.sun.enterprise.config.config_environment_factory_class=com.sun.enterprise.config.serverbeans.AppserverConfigEnvironmentFactory
+-Dosgi.shell.telnet.ip=127.0.0.1
+-Dcom.sun.aas.instanceRoot=D:\-aquarius\glassfish3\glassfish\domains\domain1
+-Dcom.sun.aas.installRoot=D:\-aquarius\glassfish3\glassfish
+-Djava.ext.dirs=D:\Program Files\Java\jdk1.7.0/lib/ext;D:\Program Files\Java\jdk1.7.0/jre/lib/ext;D:\-aquarius\glassfish3\glassfish\domains\domain1/lib/ext
+-Dfelix.fileinstall.bundles.new.start=true
+-Dorg.glassfish.additionalOSGiBundlesToStart=org.apache.felix.shell,org.apache.felix.gogo.runtime,org.apache.felix.gogo.shell,org.apache.felix.gogo.command,org.apache.felix.fileinstall
+-Djava.library.path=D:/-aquarius/glassfish3/glassfish/lib;D:/Program Files/Java/jdk1.7.0/bin;C:/Windows/Sun/Java/bin;C:/Windows/System32;C:/Windows;D:/Program Files/Java/jdk1.6.0_26/bin;D:/-aquarius/apache-ant-1.8.1/bin;D:/-aquarius/apache-cxf-2.3.1/bin;D:/-aquarius/apache-maven-3.0.2/bin;D:/-aquarius/cobertura-1.9.4.1;D:/-aquarius/gwt-2.2.0;D:/-aquarius/Python27;D:/-aquarius/Python27/Scripts;C:/Program Files/PC Connectivity Solution;C:/Windows/System32/wbem;C:/Windows/System32/WindowsPowerShell/v1.0;C:/Program Files/ATI Technologies/ATI.ACE/Core-Static;E:/unison/Gtk/bin;D:/-aquarius/MySQL/mysql5.5/bin;D:/-aquarius/glassfish3/bin/%APPDATA%/Python/Scripts;D:/GNUstep/mingw/bin;D:/GNUstep/GNUstep/System/Tools;D:/-aquarius/glassfish3/bin
+com.sun.enterprise.glassfish.bootstrap.ASMain
+-domainname
+domain1
+-asadmin-args
+--host,,,localhost,,,--port,,,4848,,,--secure=false,,,--terse=false,,,--echo=false,,,--interactive=true,,,start-domain,,,--verbose=false,,,--debug=false,,,--domaindir,,,D:\-aquarius\glassfish3\glassfish\domains,,,domain1
+-instancename
+server
+-verbose
+false
+-debug
+false
+-asadmin-classpath
+D:/-aquarius/glassfish3/glassfish/modules/admin-cli.jar
+-asadmin-classname
+com.sun.enterprise.admin.cli.AsadminMain
+-upgrade
+false
+-type
+DAS
+-domaindir
+D:/-aquarius/glassfish3/glassfish/domains/domain1
+-read-stdin
+true
+十一月 26, 2011 2:27:57 上午 com.sun.enterprise.admin.launcher.GFLauncherLogger info
+信息: Successfully launched in 16 msec.
+[#|2011-11-26T02:28:12.243+0800|INFO|null|null|_ThreadID=1;_ThreadName=Thread-2;|Running GlassFish Version: GlassFish Server Open Source Edition 3.1.1 (build 12)|#]
+
+[#|2011-11-26T02:28:12.243+0800|WARNING|null|null|_ThreadID=1;_ThreadName=Thread-2;|Record begin marker is not a proper value so using default.|#]
+
+[#|2011-11-26T02:28:12.243+0800|WARNING|null|null|_ThreadID=1;_ThreadName=Thread-2;|Record end marker is not a proper value so using default.|#]
+
+[#|2011-11-26T02:28:12.243+0800|WARNING|null|null|_ThreadID=1;_ThreadName=Thread-2;|Log Format field separator is not a character so using default.|#]
+
+[#|2011-11-26T02:28:15.106+0800|INFO|glassfish3.1.1|org.glassfish.ha.store.spi.BackingStoreFactoryRegistry|_ThreadID=1;_ThreadName=Thread-2;|Registered org.glassfish.ha.store.adapter.cache.ShoalBackingStoreProxy for persistence-type = replicated in BackingStoreFactoryRegistry|#]
+
+[#|2011-11-26T02:28:16.040+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.com.sun.enterprise.v3.services.impl|_ThreadID=33;_ThreadName=Thread-2;|Grizzly Framework 1.9.36 started in: 252ms - bound to [0.0.0.0:7676]|#]
+
+[#|2011-11-26T02:28:16.041+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.com.sun.enterprise.v3.services.impl|_ThreadID=29;_ThreadName=Thread-2;|Grizzly Framework 1.9.36 started in: 593ms - bound to [0.0.0.0:8080]|#]
+
+[#|2011-11-26T02:28:16.041+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.com.sun.enterprise.v3.services.impl|_ThreadID=31;_ThreadName=Thread-2;|Grizzly Framework 1.9.36 started in: 314ms - bound to [0.0.0.0:8181]|#]
+
+[#|2011-11-26T02:28:16.041+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.com.sun.enterprise.v3.services.impl|_ThreadID=30;_ThreadName=Thread-2;|Grizzly Framework 1.9.36 started in: 308ms - bound to [0.0.0.0:4848]|#]
+
+[#|2011-11-26T02:28:16.042+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.com.sun.enterprise.v3.services.impl|_ThreadID=32;_ThreadName=Thread-2;|Grizzly Framework 1.9.36 started in: 279ms - bound to [0.0.0.0:3700]|#]
+
+[#|2011-11-26T02:28:16.275+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.com.sun.enterprise.v3.server|_ThreadID=1;_ThreadName=Thread-2;|GlassFish Server Open Source Edition 3.1.1 (12) startup time : Felix (12,907ms), startup services(4,485ms), total(17,392ms)|#]
+
+[#|2011-11-26T02:28:20.063+0800|INFO|glassfish3.1.1|javax.enterprise.system.tools.admin.org.glassfish.server|_ThreadID=40;_ThreadName=Thread-2;|JMXStartupService: Started JMXConnector, JMXService URL = service:jmx:rmi://mars-amd640:8686/jndi/rmi://mars-amd640:8686/jmxrmi|#]
+
+[#|2011-11-26T02:28:23.267+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=12;_ThreadName=Thread-2;|ERROR: Bundle org.glassfish.osgi-ejb-container [253]: Error starting file:/D:/-aquarius/glassfish3/glassfish/modules/autostart/osgi-ejb-container-3.1-SNAPSHOT.jar (org.osgi.framework.BundleException: Unresolved constraint in bundle org.glassfish.osgi-ejb-container [253]: Unable to resolve 253.0: missing requirement [253.0] package; (&(package=org.glassfish.osgijavaeebase)(version>=3.1.0)))|#]
+
+[#|2011-11-26T02:28:23.270+0800|SEVERE|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=12;_ThreadName=Thread-2;|org.osgi.framework.BundleException: Unresolved constraint in bundle org.glassfish.osgi-ejb-container [253]: Unable to resolve 253.0: missing requirement [253.0] package; (&(package=org.glassfish.osgijavaeebase)(version>=3.1.0))
+	at org.apache.felix.framework.Felix.resolveBundle(Felix.java:3443)
+	at org.apache.felix.framework.Felix.startBundle(Felix.java:1727)
+	at org.apache.felix.framework.Felix.setActiveStartLevel(Felix.java:1156)
+	at org.apache.felix.framework.StartLevelImpl.run(StartLevelImpl.java:264)
+	at java.lang.Thread.run(Thread.java:722)
+|#]
+
+[#|2011-11-26T02:28:23.271+0800|SEVERE|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=12;_ThreadName=Thread-2;|	at org.apache.felix.framework.Felix.resolveBundle(Felix.java:3443)|#]
+
+[#|2011-11-26T02:28:23.271+0800|SEVERE|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=12;_ThreadName=Thread-2;|	at org.apache.felix.framework.Felix.startBundle(Felix.java:1727)|#]
+
+[#|2011-11-26T02:28:23.272+0800|SEVERE|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=12;_ThreadName=Thread-2;|	at org.apache.felix.framework.Felix.setActiveStartLevel(Felix.java:1156)|#]
+
+[#|2011-11-26T02:28:23.272+0800|SEVERE|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=12;_ThreadName=Thread-2;|	at org.apache.felix.framework.StartLevelImpl.run(StartLevelImpl.java:264)|#]
+
+[#|2011-11-26T02:28:23.272+0800|SEVERE|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=12;_ThreadName=Thread-2;|	at java.lang.Thread.run(Thread.java:722)|#]
+
+[#|2011-11-26T02:33:56.862+0800|INFO|glassfish3.1.1|org.hibernate.validator.util.Version|_ThreadID=64;_ThreadName=Thread-2;|Hibernate Validator 4.1.0.Final|#]
+
+[#|2011-11-26T02:33:56.878+0800|INFO|glassfish3.1.1|org.hibernate.validator.engine.resolver.DefaultTraversableResolver|_ThreadID=64;_ThreadName=Thread-2;|Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.|#]
+
+[#|2011-11-26T02:36:52.845+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=53;_ThreadName=Thread-2;|Installed D:\-aquarius\glassfish3\glassfish\domains\domain1\autodeploy\bundles\osgijms1.consumer.jar|#]
+
+[#|2011-11-26T02:36:52.846+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=53;_ThreadName=Thread-2;|Started bundle: file:/D:/-aquarius/glassfish3/glassfish/domains/domain1/autodeploy/bundles/osgijms1.consumer.jar|#]
+
+[#|2011-11-26T02:36:52.847+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=53;_ThreadName=Thread-2;|Started bundle: file:/D:/-aquarius/glassfish3/glassfish/domains/domain1/autodeploy/bundles/osgijms1.consumer.jar|#]
+
+[#|2011-11-26T02:36:53.062+0800|INFO|glassfish3.1.1|org.glassfish.osgijavaeebase|_ThreadID=59;_ThreadName=Thread-2;|Expanded at file:/C:/Users/ADMINI~1/AppData/Local/Temp/osgiapp2491207994651575871/|#]
+
+[#|2011-11-26T02:36:54.013+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.security.com.sun.enterprise.security|_ThreadID=59;_ThreadName=Thread-2;|SEC1002: Security Manager is OFF.|#]
+
+[#|2011-11-26T02:36:55.598+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.security.com.sun.enterprise.security|_ThreadID=59;_ThreadName=Thread-2;|SEC1010: Entering Security Startup Service|#]
+
+[#|2011-11-26T02:36:55.623+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.security.com.sun.enterprise.security|_ThreadID=59;_ThreadName=Thread-2;|SEC1143: Loading policy provider com.sun.enterprise.security.provider.PolicyWrapper.|#]
+
+[#|2011-11-26T02:36:56.134+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.security.com.sun.enterprise.security.auth.realm|_ThreadID=59;_ThreadName=Thread-2;|SEC1115: Realm [admin-realm] of classtype [com.sun.enterprise.security.auth.realm.file.FileRealm] successfully created.|#]
+
+[#|2011-11-26T02:36:56.135+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.security.com.sun.enterprise.security.auth.realm|_ThreadID=59;_ThreadName=Thread-2;|SEC1115: Realm [file] of classtype [com.sun.enterprise.security.auth.realm.file.FileRealm] successfully created.|#]
+
+[#|2011-11-26T02:36:56.139+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.security.com.sun.enterprise.security.auth.realm|_ThreadID=59;_ThreadName=Thread-2;|SEC1115: Realm [certificate] of classtype [com.sun.enterprise.security.auth.realm.certificate.CertificateRealm] successfully created.|#]
+
+[#|2011-11-26T02:36:56.144+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.security.com.sun.enterprise.security|_ThreadID=59;_ThreadName=Thread-2;|SEC1011: Security Service(s) Started Successfully|#]
+
+[#|2011-11-26T02:37:02.900+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=53;_ThreadName=Thread-2;|Installed D:\-aquarius\glassfish3\glassfish\domains\domain1\autodeploy\bundles\osgijms1.producer.jar|#]
+
+[#|2011-11-26T02:37:02.902+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=53;_ThreadName=Thread-2;|Message producer started - waiting to be configured with topic name|#]
+
+[#|2011-11-26T02:37:02.903+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=53;_ThreadName=Thread-2;|Started bundle: file:/D:/-aquarius/glassfish3/glassfish/domains/domain1/autodeploy/bundles/osgijms1.producer.jar|#]
+
+[#|2011-11-26T02:37:02.904+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=53;_ThreadName=Thread-2;|Started bundle: file:/D:/-aquarius/glassfish3/glassfish/domains/domain1/autodeploy/bundles/osgijms1.producer.jar|#]
+
+[#|2011-11-26T02:37:03.695+0800|INFO|glassfish3.1.1|javax.enterprise.system.core.transaction.com.sun.jts.CosTransactions|_ThreadID=59;_ThreadName=Thread-2;|JTS5014: Recoverable JTS instance, serverId = [3700]|#]
+
+[#|2011-11-26T02:37:05.363+0800|INFO|glassfish3.1.1|javax.enterprise.resource.jms.com.sun.enterprise.connectors.jms.system|_ThreadID=59;_ThreadName=Thread-2;|JMS010: ADDRESSLIST in setJmsServiceProvider: mq://localhost:7676/|#]
+
+[#|2011-11-26T02:37:05.366+0800|INFO|glassfish3.1.1|javax.enterprise.resource.jms.com.sun.enterprise.connectors.jms.system|_ThreadID=59;_ThreadName=Thread-2;|JMS08: JMS Service Connection URL is : mq://localhost:7676/|#]
+
+[#|2011-11-26T02:37:05.422+0800|INFO|glassfish3.1.1|org.hibernate.validator.engine.resolver.DefaultTraversableResolver|_ThreadID=59;_ThreadName=Thread-2;|Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.|#]
+
+[#|2011-11-26T02:37:05.501+0800|INFO|glassfish3.1.1|javax.resourceadapter.mqjmsra.lifecycle|_ThreadID=59;_ThreadName=Thread-2;|MQJMSRA_RA1101: GlassFish MQ JMS Resource Adapter: Version:  4.5.1  (Build 3-b) Compile:  Tue Jun 21 16:31:32 PDT 2011|#]
+
+[#|2011-11-26T02:37:05.502+0800|INFO|glassfish3.1.1|javax.resourceadapter.mqjmsra.lifecycle|_ThreadID=59;_ThreadName=Thread-2;|MQJMSRA_RA1101: GlassFish MQ JMS Resource Adapter starting: broker is EMBEDDED, connection mode is Direct|#]
+
+[#|2011-11-26T02:37:08.544+0800|INFO|glassfish3.1.1|javax.resourceadapter.mqjmsra.lifecycle|_ThreadID=59;_ThreadName=Thread-2;|MQJMSRA_RA1101: GlassFish MQ JMS Resource Adapter Started:EMBEDDED|#]
+
+[#|2011-11-26T02:37:08.598+0800|INFO|glassfish3.1.1|javax.enterprise.resource.jms.com.sun.enterprise.connectors.jms.system|_ThreadID=59;_ThreadName=Thread-2;|JMS013: end point determine destionation name, Res name: javax.jms.Topic, JNDI name: AnMDB descriptor name : {3}|#]
+
+[#|2011-11-26T02:37:09.517+0800|INFO|glassfish3.1.1|org.glassfish.osgiejb|_ThreadID=59;_ThreadName=Thread-2;|addingService: Found 1 no. of EJBs|#]
+
+[#|2011-11-26T02:37:09.519+0800|INFO|glassfish3.1.1|org.glassfish.osgijavaeebase|_ThreadID=59;_ThreadName=Thread-2;|deployed bundle sahoo.osgijms1.consumer [254] at file:/C:/Users/ADMINI~1/AppData/Local/Temp/osgiapp2491207994651575871/|#]
+
+[#|2011-11-26T02:37:17.931+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=53;_ThreadName=Thread-2;|Installed D:\-aquarius\glassfish3\glassfish\domains\domain1\autodeploy\bundles\osgijms1.producer.cfg|#]
+
+[#|2011-11-26T02:37:18.666+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=52;_ThreadName=Thread-2;|Sending message: This is message 1|#]
+
+[#|2011-11-26T02:37:18.676+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=52;_ThreadName=Thread-2;|Sending message: This is message 2|#]
+
+[#|2011-11-26T02:37:18.818+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=111;_ThreadName=Thread-2;|AnMDB Received: com.sun.messaging.jms.ra.DirectPacket@1008f4d|#]
+
+[#|2011-11-26T02:37:18.818+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=92;_ThreadName=Thread-2;|AnMDB Received: This is message 1|#]
+
+[#|2011-11-26T02:37:18.820+0800|INFO|glassfish3.1.1|javax.enterprise.system.std.com.sun.enterprise.server.logging|_ThreadID=110;_ThreadName=Thread-2;|AnMDB Received: This is message 2|#]
+
