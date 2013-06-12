@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org">
+    <meta charset="utf-8">
+    <title>The abc jersey Test</title>
+    <script type="text/javascript">
+        dojoConfig = {parseOnLoad: true}
+    </script>
+    <!-- CDN
+    <link type="text/css" rel="stylesheet"
+          href="//ajax.googleapis.com/ajax/libs/dojo/1.9.0/dijit/themes/tundra/tundra.css">
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.0/dojo/dojo.js"></script>
+	-->
+    <!-- local-->
+    <link rel="stylesheet" href="webjars/bootstrap/2.3.1/css/bootstrap.css">
+    <link rel="stylesheet" href="webjars/dojo/1.8.3/dijit/themes/tundra/tundra.css">
+    <script src="webjars/dojo/1.8.3/dojo/dojo.js"></script>
+
+    <script type="text/javascript">
+        var getAllUrl = "restful/abc/getAll";
+        require([ "dojo/dom", "dojo/on", "dojo/request", "dojo/domReady!" ],
+                function (dom, on, request) {
+                    var resultDiv = dom.byId("resultDiv");
+                    on(dom.byId("btn"), "click", function (evt) {
+                        request.get(getAllUrl, {
+                            headers: { "Content-Type": "application/json; charset=utf-8", "Accept": "application/json; charset=utf-8"},
+                            handleAs: "json"
+                        }).then(
+                                function (response) {
+                                    resultDiv.innerHTML = "";
+                                    var abcList = response.elementList;
+                                    for (var n in abcList) {
+                                        var abc = abcList[n];
+                                        var id = abc.id;
+                                        var name = abc.name;
+                                        var value = abc.value;
+                                        resultDiv.innerHTML += id + " : " + name + " : " + value + "<br/>";
+                                    }
+                                },
+                                function (error) {
+                                    // Display the error returned
+                                    resultDiv.innerHTML = "<div class=\"error\">" + error + "<div>";
+                                });
+                    });
+                });
+    </script>
+</head>
+<body class="tundra">
+<h1>Dojo Get Output:</h1>
+<div id="btn">
+    <button id="textButton" data-dojo-type="dijit/form/Button">Send it!</button>
+    <br/>
+</div>
+<div id="resultDiv"></div>
+<a href="index.html" target="_self">Go Home</a>
+<br/>
+</body>
+</html>

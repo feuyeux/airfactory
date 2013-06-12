@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org">
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        dojoConfig = {async: true, parseOnLoad: false}
+    </script>
+    <!-- CDN
+     <link type="text/css" rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/dojo/1.9.0/dijit/themes/tundra/tundra.css">
+     <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.0/dojo/dojo.js"></script> -->
+
+    <!-- local -->
+    <link rel="stylesheet" href="webjars/bootstrap/2.3.1/css/bootstrap.css">
+    <link rel="stylesheet" href="webjars/dojo/1.8.3/dijit/themes/tundra/tundra.css">
+    <script src="webjars/dojo/1.8.3/dojo/dojo.js"></script>
+
+    <script type="text/javascript">
+        require(["dojo/dom-form", "dojo/dom", "dojo/on", "dojo/json", "dojo/domReady!"],
+                function (domForm, dom, on, JSON) {
+                    on(dom.byId("convertForm"), "click", function () {
+                        var formObject1 = domForm.toObject("myform");
+                        dom.byId("output").innerHTML = JSON.stringify(formObject1);
+                    });
+                });
+    </script>
+
+    <title></title>
+</head>
+<body class="claro">
+<p>
+    <button id="convertForm">Click to convert the form to an object</button>
+</p>
+
+<p>The FORM</p>
+
+<form id="myform">
+    <p>
+        text1: <input type="text" name="text1" value="value1"><br/>
+        text2: <input type="text" name="text2" value="value2"><br/>
+        cb_group.foo:
+        <input id="f6_checkbox1" type="checkbox" name="cb_group" value="foo" checked><br/>
+        cb_group.boo:
+        <input id="f6_checkbox2" type="checkbox" name="cb_group" value="boo"><br/>
+        radio_group.baz:
+        <input id="f6_radio1" type="radio" name="radio_group" value="baz"><br/>
+        radio_group.bam:
+        <input id="f6_radio2" type="radio" name="radio_group" value="bam" checked><br/>
+        radio_group.baf:
+        <input id="f6_radio3" type="radio" name="radio_group" value="baf">
+    </p>
+</form>
+
+<p>The form as an object:</p>
+<pre id="output">
+</pre>
+<a href="index.html" target="_self">Go Home</a>
+<br/>
+</body>
+</html>
+

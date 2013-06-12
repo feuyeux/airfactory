@@ -135,28 +135,39 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
-			<version>3.5.6-Final</version>		
+			<version>3.5.6-Final</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
 			<version>1.0.0.Final</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.webjars</groupId> <artifactId>dojo</artifactId> 
-			<version>1.8.1</version> </dependency> <dependency> <groupId>org.webjars</groupId> 
-			<artifactId>bootstrap</artifactId> <version>2.2.1</version> </dependency> -->
+		<!-- web jars -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>dojo</artifactId>
+			<version>1.8.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
 		<!-- log -->
 		<dependency>
 			<groupId>log4j</groupId>
@@ -209,7 +220,8 @@
 								org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache
 								Tomcat v7.0
 							</classpathContainer>
-							<classpathContainer>org.eclipse.jst.j2ee.internal.web.container/artifact</classpathContainer>
+							<classpathContainer>org.eclipse.jst.j2ee.internal.web.container/artifact
+							</classpathContainer>
 						</classpathContainers>
 					</configuration>
 				</plugin>

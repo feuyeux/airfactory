@@ -29,7 +29,7 @@ import creative.air.jersey.service.AbcService;
 @Component()
 @Path("/abc")
 public class AbcApi {
-	private Logger _log = Logger.getLogger(this.getClass());
+	private final Logger _log = Logger.getLogger(this.getClass());
 	@Autowired
 	private AbcService abcService;
 

@@ -23,9 +23,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 @Ignore
 public class TestAbcApi {
-	private Logger logger = Logger.getLogger(this.getClass());
-	protected ClassPathXmlApplicationContext appContext;
-	protected AbcApi abcApi;
+	private final Logger logger = Logger.getLogger(this.getClass());
+    private ClassPathXmlApplicationContext appContext;
+    private AbcApi abcApi;
 
 	@Before
 	public void tearUp() {

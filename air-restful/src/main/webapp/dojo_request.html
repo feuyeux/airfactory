@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org">
+    <script type="text/javascript">
+        dojoConfig = {parseOnLoad: true}
+    </script>
+
+    <!-- CDN -->
+
+    <!-- local-->
+    <link rel="stylesheet" href="webjars/bootstrap/2.3.1/css/bootstrap.css">
+    <link rel="stylesheet" href="webjars/dojo/1.8.3/dijit/themes/tundra/tundra.css">
+    <script src="webjars/dojo/1.8.3/dojo/dojo.js"></script>
+
+    <script type="text/javascript">
+        require(["dojo/request", "dojo/dom", "dojo/dom-construct", "dojo/json", "dojo/on", "dojo/domReady!"],
+                function (request, dom, domConst, JSON, on) {
+                    on(dom.byId("startButton"), "click", function () {
+                        var url="normalTxt.txt";
+                        domConst.place("<p>Requesting...</p>", "output");
+                        request(url).then(
+                                function (data) {
+                                    dom.byId("output").innerHTML = "";
+                                    domConst.place("<p><code>" + data + "</code>", "output");
+                                }, function (err) {
+                                    domConst.place("<p>Handle the error condition: <code>" + err + "</code>", "output");
+                                }, function (evt) {
+                                    domConst.place("<p>Handle a progress event from the request if the browser supports XHR2: <code>" + evt + "</code>", "output");
+                                });
+                    });
+                });
+    </script>
+    <title>test dojo request</title>
+</head>
+<body class="tundra">
+<h1>Dojo Request Output:</h1>
+<div id="output"></div>
+<button type="button" id="startButton">Start</button>
+<br/>
+<a href="index.html" target="_self">Go Home</a>
+<br/>
+</body>
+</html>

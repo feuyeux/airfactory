@@ -22,8 +22,8 @@ import creative.air.jersey.model.AbcEntity;
  */
 @Ignore
 public class TestAbcDao {
-	protected AbcDao abcDao;
-	protected ClassPathXmlApplicationContext appContext;
+    private AbcDao abcDao;
+    private ClassPathXmlApplicationContext appContext;
 
 	@Before
 	public void tearUp() {

@@ -22,8 +22,8 @@ import creative.air.jersey.model.AbcEntity;
 @Transactional
 @Service("abcService")
 public class AbcService {
-	private Logger logger = Logger.getLogger(this.getClass());
-	private AbcDao abcDao;
+	private final Logger	logger	= Logger.getLogger(this.getClass());
+	private AbcDao	abcDao;
 
 	public AbcDao getAbcDao() {
 		return abcDao;
@@ -43,7 +43,12 @@ public class AbcService {
 
 	private AbcDto entity2Dto(AbcEntity abc) {
 		AbcDto dto = new AbcDto();
-		dto.setId(abc.getId());
+		try {
+			dto.setId(abc.getId());
+		} catch (Exception e) {
+			logger.debug("abc id is empty.");
+		}
+
 		dto.setName(abc.getName());
 		dto.setValue(abc.getValue());
 		return dto;
@@ -69,7 +74,7 @@ public class AbcService {
 		return dtos;
 	}
 
-	public AbcDto getABC(Integer id) throws Exception {
+	public AbcDto getABC(Integer id){
 		return entity2Dto(abcDao.findById(id));
 	}
 }

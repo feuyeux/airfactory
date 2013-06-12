@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- CDN
+     <link type="text/css" rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/dojo/1.9.0/dijit/themes/tundra/tundra.css">
+     <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.0/dojo/dojo.js"></script> -->
+
+    <!-- local -->
+    <link rel="stylesheet" href="webjars/bootstrap/2.3.1/css/bootstrap.css">
+    <script src="webjars/jquery/2.0.0/jquery.js"></script>
+</head>
+<body>
+<div id="resultDiv"/>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+        var getAllUrl = "air-restful-setting.json";
+
+        var request = $.ajax({
+            url: getAllUrl,
+            dataType:'json'
+        });
+
+        request.success(function(data, textStatus, jqXHR) {
+        	 $('#resultDiv').html("version=" + data.version + " switch1=" + data.switch1);
+        });
+
+        request.error(function(jqXHR, textStatus, errorThrown) {
+            $('#resultDiv').html("jqXHR="+jqXHR+" ,textStatus="+textStatus);
+        });
+    });
+</script>
+</html>

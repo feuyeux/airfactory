@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="generator" content="HTML Tidy, see www.w3.org">
+    <script type="text/javascript">
+        dojoConfig = {parseOnLoad: true}
+    </script>
+
+    <!-- CDN
+    <link type="text/css" rel="stylesheet"
+          href="//ajax.googleapis.com/ajax/libs/dojo/1.9.0/dijit/themes/tundra/tundra.css">
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.0/dojo/dojo.js"></script>
+     -->
+    <!-- local -->
+    <link rel="stylesheet" href="webjars/bootstrap/2.3.1/css/bootstrap.css">
+    <script src="webjars/jquery/2.0.0/jquery.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#submitButton2").click(function () {
+                var request = $.ajax({
+                    type: 'post',
+                    url: 'restful/abc/add',
+                    data: JSON.stringify({name: "eric", value: "jq33"}),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json"
+                });
+
+                request.success(function (data, textStatus, jqXHR) {
+                    $('#resultDiv').html(data);
+                });
+
+                request.error(function (jqXHR, textStatus, errorThrown) {
+                    $('#resultDiv').html(jqXHR + " " + textStatus + " " + errorThrown);
+                });
+            });
+        });
+
+    </script>
+
+    <title></title>
+</head>
+<body class="tundra">
+<h1>jQuery Post Output:</h1>
+<button data-dojo-type="dijit/form/Button" id="submitButton2">Send it!</button>
+<div id="resultDiv"></div>
+<br/><a href="index.html" target="_self">Go Home</a><br/>
+</body>
+</html>
