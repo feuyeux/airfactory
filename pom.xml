@@ -9,21 +9,12 @@
 	<name>Air Project Parent</name>
 
 	<modules>
-		<module>air-concurrent</module>
 		<module>air-schedule1</module>
 		<module>air-schedule2</module>
 		<module>air-jpa2</module>
-		<module>air-datastructure</module>
-		<module>air-restful</module>
-		<module>air-security</module>
 		<module>air-mail</module>
-		<module>air-xmlrpc</module>
 		<module>air-mq</module>
 		<!--<module>air-selenium2</module>-->
-
-		<module>air-xml</module>
-		<module>air-j7</module>
-		<module>air-io</module>
 	</modules>
 
 	<properties>
@@ -95,7 +86,6 @@
 			<!--<scope>runtime</scope> -->
 		</dependency>
 
-
 		<!-- Unit Test -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -144,7 +134,7 @@
 				<updatePolicy>never</updatePolicy>
 			</releases>
 			<snapshots>
-				<enabled>true</enabled>
+				<enabled>true</enabled>s
 				<updatePolicy>never</updatePolicy>
 			</snapshots>
 		</repository>

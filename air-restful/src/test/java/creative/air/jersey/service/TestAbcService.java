@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,9 @@ import creative.air.jersey.model.AbcDto;
  * @since  0.0.1
  * @version 0.0.1
  */
+@Ignore
 @Component
-@ContextConfiguration(locations = { "classpath:applicationContext.xml", "classpath:applicationContext-persistence.xml" })
+@ContextConfiguration(locations = { "classpath:applicationContext.xml", "classpath:applicationContext-jpa.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestAbcService {
 	private Logger _log = Logger.getLogger(this.getClass());

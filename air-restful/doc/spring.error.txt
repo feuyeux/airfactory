@@ -3,3 +3,6 @@ java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderL
 
 Error configuring application listener of class org.springframework.web.context.request.RequestContextListener
 java.lang.ClassNotFoundException: org.springframework.web.context.request.RequestContextListener
+
+
+http://www.slf4j.org/codes.html#version_mismatch
