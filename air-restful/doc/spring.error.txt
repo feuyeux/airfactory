@@ -1,6 +1,0 @@
-1.Error configuring application listener of class org.springframework.web.context.ContextLoaderListener
-java.lang.ClassNotFoundException: org.springframework.web.context.ContextLoaderListener
-Error configuring application listener of class org.springframework.web.context.request.RequestContextListener
-java.lang.ClassNotFoundException: org.springframework.web.context.request.RequestContextListener
-
-2.http://www.slf4j.org/codes.html#version_mismatch
