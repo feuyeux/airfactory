@@ -1,29 +1,28 @@
-package creative.air.jersey.service;
+package org.creative.air.jersey.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.creative.air.jersey.dao.AbcDao;
+import org.creative.air.jersey.model.AbcDto;
+import org.creative.air.jersey.model.AbcEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import creative.air.jersey.dao.AbcDao;
-import creative.air.jersey.model.AbcDto;
-import creative.air.jersey.model.AbcEntity;
-
 /**
+ * Service Tier Bean
  * 
- * @author
- * Eric Han feuyeux@gmail.com
+ * @author feuyeux@gmail.com
  * 05/08/2012
- * @since  0.0.1
- * @version 0.0.1
+ * @version 0.1.0
+ * @since 0.0.1
  */
 @Transactional
 @Service("abcService")
 public class AbcService {
-	private final Logger	logger	= Logger.getLogger(this.getClass());
-	private AbcDao	abcDao;
+	private final Logger logger = Logger.getLogger(this.getClass());
+	private AbcDao abcDao;
 
 	public AbcDao getAbcDao() {
 		return abcDao;
@@ -34,7 +33,7 @@ public class AbcService {
 	}
 
 	private AbcEntity dto2Entity(AbcDto abcDto) {
-		AbcEntity abc = new AbcEntity();
+		final AbcEntity abc = new AbcEntity();
 		abc.setId(abcDto.getId());
 		abc.setName(abcDto.getName());
 		abc.setValue(abcDto.getValue());
@@ -42,10 +41,10 @@ public class AbcService {
 	}
 
 	private AbcDto entity2Dto(AbcEntity abc) {
-		AbcDto dto = new AbcDto();
+		final AbcDto dto = new AbcDto();
 		try {
 			dto.setId(abc.getId());
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			logger.debug("abc id is empty.");
 		}
 
@@ -61,20 +60,20 @@ public class AbcService {
 
 	public AbcDto updateABC(AbcDto abcUpdated) {
 		logger.debug("updateModelFromDto:" + abcUpdated);
-		AbcEntity abc = abcDao.update(dto2Entity(abcUpdated));
+		final AbcEntity abc = abcDao.update(dto2Entity(abcUpdated));
 		return entity2Dto(abc);
 	}
 
 	public List<AbcDto> getAll() {
-		List<AbcEntity> abcs = abcDao.findAll();
-		List<AbcDto> dtos = new ArrayList<AbcDto>();
-		for (AbcEntity abc : abcs) {
+		final List<AbcEntity> abcs = abcDao.findAll();
+		final List<AbcDto> dtos = new ArrayList<AbcDto>();
+		for (final AbcEntity abc : abcs) {
 			dtos.add(entity2Dto(abc));
 		}
 		return dtos;
 	}
 
-	public AbcDto getABC(Integer id){
+	public AbcDto getABC(Integer id) {
 		return entity2Dto(abcDao.findById(id));
 	}
 }

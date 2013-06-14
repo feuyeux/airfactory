@@ -1,17 +1,16 @@
-package creative.air.jersey.dao;
-
-import static org.junit.Assert.assertNotNull;
+package org.creative.air.jersey.dao;
 
 import java.util.List;
 
+import org.creative.air.jersey.model.AbcEntity;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.annotation.Rollback;
 
-import creative.air.jersey.model.AbcEntity;
 /**
  * 
  * @author
@@ -22,15 +21,15 @@ import creative.air.jersey.model.AbcEntity;
  */
 @Ignore
 public class TestAbcDao {
-    private AbcDao abcDao;
-    private ClassPathXmlApplicationContext appContext;
+	private AbcDao abcDao;
+	private ClassPathXmlApplicationContext appContext;
 
 	@Before
 	public void tearUp() {
-		String prefix = "classpath:";
-		String file1 = prefix + "applicationContext.xml";
-		String file2 = prefix + "applicationContext-jpa.xml";
-		String[] contextFiles = { file1, file2 };
+		final String prefix = "classpath:";
+		final String file1 = prefix + "applicationContext.xml";
+		final String file2 = prefix + "applicationContext-jpa.xml";
+		final String[] contextFiles = { file1, file2 };
 		appContext = new ClassPathXmlApplicationContext(contextFiles);
 		abcDao = (AbcDao) appContext.getBean("abcDao");
 	}
@@ -44,7 +43,7 @@ public class TestAbcDao {
 	@Test
 	@Rollback(false)
 	public void testSave() {
-		AbcEntity abc = new AbcEntity();
+		final AbcEntity abc = new AbcEntity();
 		abc.setName("employee");
 		abc.setValue("hanl");
 		abcDao.save(abc);
@@ -52,9 +51,9 @@ public class TestAbcDao {
 
 	@Test
 	public void testFindAll() {
-		List<AbcEntity> abcs = abcDao.findAll();
-		for (AbcEntity abc : abcs) {
-			assertNotNull("entity could not be null", abc);
+		final List<AbcEntity> abcs = abcDao.findAll();
+		for (final AbcEntity abc : abcs) {
+			Assert.assertNotNull("entity could not be null", abc);
 			System.out.println(abc);
 		}
 	}

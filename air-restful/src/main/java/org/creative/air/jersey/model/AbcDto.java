@@ -1,16 +1,17 @@
-package creative.air.jersey.model;
+package org.creative.air.jersey.model;
 
 import javax.xml.bind.annotation.XmlAccessOrder;
 import javax.xml.bind.annotation.XmlAccessorOrder;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+
 /**
+ * Transferring Bean
  * 
- * @author
- * Eric Han feuyeux@gmail.com
+ * @author feuyeux@gmail.com
  * 05/08/2012
- * @since  0.0.1
- * @version 0.0.1
+ * @version 0.1.0
+ * @since 0.0.1
  */
 @XmlRootElement(name = "abc")
 @XmlAccessorOrder(XmlAccessOrder.ALPHABETICAL)
@@ -64,7 +65,7 @@ public class AbcDto {
 
 	@Override
 	public String toString() {
-		StringBuilder buffer = new StringBuilder();
+		final StringBuilder buffer = new StringBuilder();
 		buffer.append(this.getClass().getName());
 		buffer.append("[").append("id= ").append(id);
 		buffer.append(", name= ").append(name);

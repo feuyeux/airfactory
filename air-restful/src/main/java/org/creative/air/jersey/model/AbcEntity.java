@@ -1,4 +1,4 @@
-package creative.air.jersey.model;
+package org.creative.air.jersey.model;
 
 import java.io.Serializable;
 
@@ -9,13 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 /**
+ * JPA Entity Bean
  * 
- * @author
- * Eric Han feuyeux@gmail.com
+ * @author feuyeux@gmail.com
  * 05/08/2012
- * @since  0.0.1
- * @version 0.0.1
+ * @version 0.1.0
+ * @since 0.0.1
  */
 @Entity
 @Table(name = "abc")
