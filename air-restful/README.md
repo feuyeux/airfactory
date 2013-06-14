@@ -1,13 +1,13 @@
 #Goal
-To underatand total restful webservice mechanism
+To understand full stack of restful web service mechanism
 #Core technology
 ##web page
-	dojo1.8.1
-	jquery1.9.1
+	dojo 1.8.3
+	jquery 2.0.0
 ##restful webservice
-	jersey1.17
-	spring3.2.3.RELEASE
+	jersey 1.17.1
+	spring 3.2.3.RELEASE
 ##jpa2
-	hibernate-entitymanager3.5.6-Final
+	hibernate-core 4.2.2.Final
 ##test
-	junit4.10
+	junit 4.11

@@ -13,7 +13,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="persistenceUnitName" value="LocalMysql" />
     </bean>    
     
-    <bean id="myTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
 
@@ -22,5 +22,5 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     </bean>
 	
     <!-- TransAction Manager JPA -->
-    <tx:annotation-driven transaction-manager="myTransactionManager"/>     
+    <tx:annotation-driven transaction-manager="transactionManager"/>     
 </beans>

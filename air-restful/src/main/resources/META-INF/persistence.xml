@@ -13,15 +13,17 @@
 			<!-- logs SQL -->
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="true"/>
-			<property name="use_sql_comments" value="true"/>
+			<property name="hibernate.use_sql_comments" value="true"/>
 			<!-- <property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
 			
 			<!-- Connection JDBC -->
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/air-restful" />
 			<property name="hibernate.connection.username" value="root" />
 			<property name="hibernate.connection.password" value="root" />
+			
+			<!-- c3p0 -->
 			<property name="hibernate.c3p0.max_size" value="1000" />
 			<property name="hibernate.c3p0.min_size" value="10" />
 			<property name="hibernate.c3p0.timeout" value="14400" />
