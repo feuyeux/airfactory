@@ -11,7 +11,8 @@ import org.quartz.SchedulerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//1@org.quartz.DisallowConcurrentExecution
+//1
+@org.quartz.DisallowConcurrentExecution
 public class SimpleJob implements Job {
 	private static Logger log = LoggerFactory.getLogger(SimpleJob.class);
 	private static int n = 1;
@@ -47,7 +48,7 @@ public class SimpleJob implements Job {
 		}
 	}
 
-	private boolean checkPreviousDone(JobExecutionContext context) {
+	boolean checkPreviousDone(JobExecutionContext context) {
 		try {
 			List<JobExecutionContext> jobs = context.getScheduler().getCurrentlyExecutingJobs();
 			if (jobs != null && !jobs.isEmpty()) {

@@ -23,7 +23,7 @@ public class AirCronTrigger {
 
 	public void runTask() throws Exception {
 		JobBuilder jb = org.quartz.JobBuilder.newJob(SimpleJob.class).withIdentity("job1", "group1");
-		JobDetail job = jb.build();
+		JobDetail jobDetail = jb.build();
 
 		/**
 		 * 		1. Seconds
@@ -34,15 +34,15 @@ public class AirCronTrigger {
 		 * 		6. Day-of-Week
 		 * 		7. Year (optional field)
 		 * 	*/
-		CronScheduleBuilder schedBuilder = org.quartz.CronScheduleBuilder.cronSchedule("0/2 * * * * ?");
+		CronScheduleBuilder schedBuilder = org.quartz.CronScheduleBuilder.cronSchedule("0/1 * * * * ?");
 		TriggerBuilder<CronTrigger> tb = org.quartz.TriggerBuilder.newTrigger().withIdentity("trigger1", "group1").withSchedule(schedBuilder);
 		CronTrigger trigger = tb.build();
 
 		SchedulerFactory sf = new StdSchedulerFactory();
 		Scheduler sched = sf.getScheduler();
-		Date ft = sched.scheduleJob(job, trigger);
+		Date ft = sched.scheduleJob(jobDetail, trigger);
 
-		log.info(job.getKey() + " has been scheduled:" + ft + " expression: " + trigger.getCronExpression());
+		log.info(jobDetail.getKey() + " has been scheduled:" + ft + " expression: " + trigger.getCronExpression());
 		sched.start();
 		try {
 			Thread.sleep(12 * 1000L);
