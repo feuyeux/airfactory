@@ -134,7 +134,7 @@
 				<updatePolicy>never</updatePolicy>
 			</releases>
 			<snapshots>
-				<enabled>true</enabled>s
+				<enabled>true</enabled>
 				<updatePolicy>never</updatePolicy>
 			</snapshots>
 		</repository>
