@@ -17,7 +17,6 @@ import org.apache.tools.tar.TarEntry;
 import org.apache.tools.tar.TarInputStream;
 
 public class FtpUtils {
-	static final int TIMEOUTVALUE = 30000;
 	static final String FtpLogFileMaxUnzippedFileSize = "Ftp.LogFile.MaxUnzippedFileSize";
 	static final String FtpLogFileMaxLogFile = "Ftp.LogFile.MaxLogFile";
 	static final String FtpLogFileDefaultFileName = "Ftp.LogFile.DefaultFileName";
@@ -38,73 +37,10 @@ public class FtpUtils {
 
 	}
 
-	/**
-	 * Validate the FTP URL.
-	 * 
-	 * @param iBuildUrl
-	 *            : URL of the build to test
-	 * @return Return true if the URL is reachable, false otherwise.
-	 * @throws InvalidNameException
-	 *             if the name is not well-formed.
-	 * @throws IOException
-	 *             if the connection has some problems.
-	 */
-	public Boolean checkFTPAddress(String iBuildUrl) throws Exception {
-		if ((iBuildUrl != null) && (!iBuildUrl.isEmpty())) {
-			parseUrlString(iBuildUrl);
-			connectFtpServer();
-			InputStream is = null;
-			try {
-				is = getFtpInputStream();
-				if (is == null) {
-					return false;
-				} else {
-					return true;
-				}
-			} catch (final IOException ex) {
-
-			} finally {
-				try {
-					if (is != null) {
-						is.close();
-					}
-					cleanEnv();
-				} catch (final IOException e) {
-
-				}
-
-			}
-		} else {
-			throw new Exception("Invalid FTP URL");
-		}
-
-		return false;
-	}
-
-	/**
-	 * Validate the FTP URL.
-	 * 
-	 * @param iBuildUrl
-	 *            : URL of the build to test
-	 * @return Return true is the URL is valid, false it is correct syntax but
-	 *         invalid.
-	 * @throws InvalidNameException
-	 *             if the name is not well-formed.
-	 * @throws IOException
-	 *             if the connection has some problems.
-	 */
-
 	public String getLogContent(String logUrl) throws Exception {
 		return getLogContent(logUrl, defaultFileName);
 	}
 
-	/**
-	 * Get the content of all.log.
-	 * 
-	 * @param logUrl
-	 *            : URL of the all.log package
-	 * @return the content of all.log
-	 */
 	public String getLogContent(String logUrl, String fileName) throws Exception {
 		if ((logUrl != null) && (!logUrl.isEmpty()) && (fileName != null) && (!fileName.isEmpty())) {
 			InputStream is = null;
@@ -112,12 +48,7 @@ public class FtpUtils {
 			OutputStream fout = null;
 			String content = null;
 			try {
-
-				// sample file
-				// ftp://10.11.59.14/testresults/coremw/stcltest/00test.tgz
-				// ftp://jenkins:PWD4j3nkins@ftp-utf.rennes.eu.thmulti.com/ForTest/Don'tDelete/test2.tgz
 				parseUrlString(logUrl);
-
 				connectFtpServer();
 				final long tgzFileSize = getZipFileSize();
 				// only consider the tgz file whose size is less than 20MB.
@@ -126,8 +57,7 @@ public class FtpUtils {
 				}
 
 				String ftpFile = "/tmp/" + filePathAndName;
-				OutputStream output = new FileOutputStream(
-						"ftp://jenkins:PWD4j3nkins@ftp-utf.rennes.eu.thmulti.com/ForTest/DonotDelete/2013_04_28_14h53m41s_1367132021835283.tgz");
+				OutputStream output = new FileOutputStream(filePathAndName);
 				ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 				ftpClient.enterLocalPassiveMode();
 				ftpClient.retrieveFile(ftpFile, output);
@@ -191,14 +121,12 @@ public class FtpUtils {
 		}
 	}
 
-	public void connectFtpServer() throws Exception {
+	private void connectFtpServer() throws Exception {
 		ftpClient = new FTPClient();
 		Pattern p = null;
 		Matcher m = null;
 		if (port.equals("")) {
 			ftpClient.connect(server);
-			ftpClient.setSoTimeout(TIMEOUTVALUE);
-			ftpClient.setDataTimeout(TIMEOUTVALUE);
 		} else {
 			p = Pattern.compile("^[0-9]+$");
 			m = p.matcher(port);
@@ -216,26 +144,7 @@ public class FtpUtils {
 		}
 	}
 
-	public String getFilePathAndName() {
-		return filePathAndName;
-	}
-
-	public FTPClient getFtpClient() {
-		return ftpClient;
-	}
-
-	private InputStream getFtpInputStream() throws Exception {
-		if (ftpClient != null) {
-			is = ftpClient.retrieveFileStream(filePathAndName);
-		}
-		return is;
-	}
-
-	public String getServer() {
-		return server;
-	}
-
-	public long getZipFileSize() throws Exception {
+	private long getZipFileSize() throws Exception {
 		long tgzFileSize = 0;
 		final String s = "SIZE " + filePathAndName + " \r\n";
 		if (ftpClient != null) {
@@ -248,7 +157,7 @@ public class FtpUtils {
 		return tgzFileSize;
 	}
 
-	public void parseUrlString(String url) throws Exception {
+	private void parseUrlString(String url) throws Exception {
 		Pattern p = null;
 		Matcher m = null;
 		String serverAndPort = "";
