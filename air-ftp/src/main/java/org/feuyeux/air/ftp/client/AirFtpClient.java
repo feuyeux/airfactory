@@ -34,14 +34,18 @@ public class AirFtpClient {
 
 	private FTPClient initializeFtpClient(String server, int port) throws SocketException, IOException {
 		FTPClient ftp = new FTPClient();
+				
 		if (keepAliveTimeout >= 0) {
 			ftp.setControlKeepAliveTimeout(keepAliveTimeout);
 		}
-
 		if (controlKeepAliveReplyTimeout >= 0) {
 			ftp.setControlKeepAliveReplyTimeout(controlKeepAliveReplyTimeout);
 		}
-
+		
+		int TIMEOUTVALUE = 30000;
+		ftp.setSoTimeout(TIMEOUTVALUE);
+		ftp.setDataTimeout(TIMEOUTVALUE);
+		
 		// Use passive mode as default because most of us are behind firewalls these days.
 		if (localActive) {
 			ftp.enterLocalActiveMode();
