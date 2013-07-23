@@ -11,29 +11,30 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.log4j.Logger;
 import org.apache.tools.tar.TarEntry;
 import org.apache.tools.tar.TarInputStream;
 
 public class FtpUtils {
-	Logger				log								= Logger.getLogger(getClass());
+	Logger log = Logger.getLogger(getClass());
 
-	static final String	FtpLogFileMaxUnzippedFileSize	= "Ftp.LogFile.MaxUnzippedFileSize";
-	static final String	FtpLogFileMaxLogFile			= "Ftp.LogFile.MaxLogFile";
-	static final String	FtpLogFileDefaultFileName		= "Ftp.LogFile.DefaultFileName";
-	private String		server							= "";
-	private String		port							= "";
-	private String		username						= "";
-	private String		password						= "";
+	static final String FtpLogFileMaxUnzippedFileSize = "Ftp.LogFile.MaxUnzippedFileSize";
+	static final String FtpLogFileMaxLogFile = "Ftp.LogFile.MaxLogFile";
+	static final String FtpLogFileDefaultFileName = "Ftp.LogFile.DefaultFileName";
+	private String server = "";
+	private String port = "";
+	private String username = "";
+	private String password = "";
 
-	private String		filePathAndName					= "";
-	private FTPClient	ftpClient						= null;
-	private InputStream	is								= null;
+	private String filePathAndName = "";
+	private FTPClient ftpClient = null;
+	private final InputStream is = null;
 
-	private Integer		MAX_UNZIPPED_FILE					= 20;
-	private Integer		maxLogFile						= 20;
-	public String		defaultFileName					= null;
+	private final Integer MAX_UNZIPPED_FILE = 20;
+	private final Integer maxLogFile = 20;
+	public String defaultFileName = null;
 
 	public FtpUtils() {
 
@@ -43,9 +44,28 @@ public class FtpUtils {
 		return getLogContent(logUrl, defaultFileName);
 	}
 
+	private TarInputStream buildTarInputStream() throws Exception {
+		OutputStream output = null;
+		try {
+			final String targetFilePath = System.nanoTime() + "_temp.tgz";
+			output = new FileOutputStream(targetFilePath);
+			ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+			ftpClient.enterLocalPassiveMode();
+			ftpClient.retrieveFile(filePathAndName, output);
+			final GZIPInputStream gzipInputStream = new GZIPInputStream(new FileInputStream(targetFilePath));
+
+			return new TarInputStream(gzipInputStream);
+		} catch (final Exception e) {
+			log.error(e);
+			return null;
+		} finally {
+			output.close();
+		}
+	}
+
 	public String getLogContent(String logUrl, String fileName) throws Exception {
 		if ((logUrl != null) && (!logUrl.isEmpty()) && (fileName != null) && (!fileName.isEmpty())) {
-			InputStream is = null;
+			final InputStream is = null;
 			TarInputStream tin = null;
 			OutputStream fout = null;
 			try {
@@ -57,18 +77,10 @@ public class FtpUtils {
 					throw new Exception("The tgz file is " + tgzFileSize + "B. It is more than " + MAX_UNZIPPED_FILE + "MB. Please download it from " + logUrl);
 				}
 
-				String targetFilePath = filePathAndName;
-				String sourceFilePath = filePathAndName;
-				OutputStream output = new FileOutputStream(targetFilePath);
-
-				//					ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-				//					ftpClient.enterLocalPassiveMode();
-
-				ftpClient.retrieveFile(sourceFilePath, output);
-				output.close();
-
-				GZIPInputStream gzipInputStream = new GZIPInputStream(new FileInputStream(targetFilePath));
-				tin = new TarInputStream(gzipInputStream);
+				tin = buildTarInputStream();
+				if (tin == null) {
+					return null;
+				}
 				TarEntry tarEntry = tin.getNextEntry();
 
 				while (tarEntry != null) {

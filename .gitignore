@@ -9,5 +9,6 @@ target
 .db
 nb-configuration.xml
 .7z
+.tgz
 .zip
 .*~

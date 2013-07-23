@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.SocketException;
 import java.util.zip.GZIPInputStream;
 
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.apache.log4j.Logger;
@@ -16,18 +17,18 @@ import org.apache.tools.tar.TarEntry;
 import org.apache.tools.tar.TarInputStream;
 
 public class AirFtpClient {
-	Logger	log								= Logger.getLogger(getClass());
-	long	keepAliveTimeout				= -1;
-	int		controlKeepAliveReplyTimeout	= -1;
-	String	username						= null;
-	String	password						= null;
-	String	server;
-	int		port							= 0;
-	boolean	storeFile						= false, binaryTransfer = false;
-	boolean	localActive						= false, useEpsvWithIPv4 = false;
-	private Integer		MAX_UNZIPPED_FILE					= 20;
-	private Integer		MAX_LOG_FILE						= 20;
-	
+	Logger log = Logger.getLogger(getClass());
+	long keepAliveTimeout = -1;
+	int controlKeepAliveReplyTimeout = -1;
+	String username = null;
+	String password = null;
+	String server;
+	int port = 0;
+	boolean storeFile = false, binaryTransfer = false;
+	boolean localActive = false, useEpsvWithIPv4 = false;
+	private final Integer MAX_UNZIPPED_FILE = 20;
+	private final Integer MAX_LOG_FILE = 20;
+
 	public AirFtpClient() {
 	}
 
@@ -39,19 +40,19 @@ public class AirFtpClient {
 	}
 
 	private FTPClient initializeFtpClient(String server, int port) throws SocketException, IOException {
-		FTPClient ftp = new FTPClient();
-				
+		final FTPClient ftp = new FTPClient();
+
 		if (keepAliveTimeout >= 0) {
 			ftp.setControlKeepAliveTimeout(keepAliveTimeout);
 		}
 		if (controlKeepAliveReplyTimeout >= 0) {
 			ftp.setControlKeepAliveReplyTimeout(controlKeepAliveReplyTimeout);
 		}
-		
-		int TIMEOUTVALUE = 30000;
-		ftp.setSoTimeout(TIMEOUTVALUE);
-		ftp.setDataTimeout(TIMEOUTVALUE);
-		
+
+		//		int TIMEOUTVALUE = 30000;
+		//		ftp.setSoTimeout(TIMEOUTVALUE);
+		//		ftp.setDataTimeout(TIMEOUTVALUE);
+
 		// Use passive mode as default because most of us are behind firewalls these days.
 		if (localActive) {
 			ftp.enterLocalActiveMode();
@@ -68,12 +69,12 @@ public class AirFtpClient {
 		FTPClient ftp = null;
 		try {
 			ftp = initializeFtpClient(server, port);
-			int reply = ftp.getReplyCode();
+			final int reply = ftp.getReplyCode();
 			return FTPReply.isPositiveCompletion(reply);
-		} catch (SocketException e) {
+		} catch (final SocketException e) {
 			log.error(e);
 			return false;
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			log.error(e);
 			return false;
 		} finally {
@@ -86,10 +87,10 @@ public class AirFtpClient {
 		try {
 			ftp = initializeFtpClient(server, port);
 			return ftp.login(username, password);
-		} catch (SocketException e) {
+		} catch (final SocketException e) {
 			log.error(e);
 			return false;
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			log.error(e);
 			return false;
 		} finally {
@@ -106,9 +107,9 @@ public class AirFtpClient {
 			ftp.login(username, password);
 			input = new FileInputStream(sourceFilePath);
 			ftp.storeFile(targetFilePath, input);
-		} catch (SocketException e) {
+		} catch (final SocketException e) {
 			log.error(e);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			log.error(e);
 		} finally {
 			input.close();
@@ -116,7 +117,7 @@ public class AirFtpClient {
 			ftp.disconnect();
 		}
 	}
-	
+
 	public void retrieveFile(String sourceFilePath, String targetFilePath) throws IOException {
 		OutputStream output = null;
 		FTPClient ftp = null;
@@ -125,9 +126,9 @@ public class AirFtpClient {
 			ftp.login(username, password);
 			output = new FileOutputStream(targetFilePath);
 			ftp.retrieveFile(sourceFilePath, output);
-		} catch (SocketException e) {
+		} catch (final SocketException e) {
 			log.error(e);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			log.error(e);
 		} finally {
 			output.close();
@@ -135,7 +136,7 @@ public class AirFtpClient {
 			ftp.disconnect();
 		}
 	}
-	
+
 	private long getZipFileSize(String filePathAndName, FTPClient ftpClient) throws Exception {
 		long tgzFileSize = 0;
 		final String s = "SIZE " + filePathAndName + " \r\n";
@@ -148,38 +149,56 @@ public class AirFtpClient {
 		}
 		return tgzFileSize;
 	}
-	
+
+	private TarInputStream buildTarInputStream(FTPClient ftp, String sourceFilePath) throws Exception {
+		OutputStream output = null;
+		try {
+			final String targetFilePath = System.nanoTime() + "_temp.tgz";
+			output = new FileOutputStream(targetFilePath);
+			ftp.setFileType(FTP.BINARY_FILE_TYPE);
+			ftp.enterLocalPassiveMode();
+			ftp.retrieveFile(sourceFilePath, output);
+			final GZIPInputStream gzipInputStream = new GZIPInputStream(new FileInputStream(targetFilePath));
+
+			return new TarInputStream(gzipInputStream);
+		} catch (final Exception e) {
+			log.error(e);
+			return null;
+		} finally {
+			output.close();
+		}
+	}
+
 	public String tgzFileContent(String sourceFilePath, String fileName) throws Exception {
-		FTPClient ftp = null;OutputStream output = null;
+		FTPClient ftp = null;
 		try {
 			ftp = initializeFtpClient(server, port);
 			ftp.login(username, password);
-			final long tgzFileSize = getZipFileSize(sourceFilePath,ftp);
+			final long tgzFileSize = getZipFileSize(sourceFilePath, ftp);
 			if (tgzFileSize > (MAX_UNZIPPED_FILE * 1024 * 1024)) {
-				throw new Exception("The tgz file is " + tgzFileSize + "B. It is more than " + MAX_UNZIPPED_FILE + "MB. Please download it from " + sourceFilePath);
+				throw new Exception("The tgz file is " + tgzFileSize + "B. It is more than " + MAX_UNZIPPED_FILE + "MB. Please download it from "
+						+ sourceFilePath);
 			}
-			
-			String targetFilePath = "";
-			output = new FileOutputStream(targetFilePath);
-			//					ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-			//					ftpClient.enterLocalPassiveMode();
-			ftp.retrieveFile(sourceFilePath, output);
-			
-			GZIPInputStream gzipInputStream = new GZIPInputStream(new FileInputStream(targetFilePath));
-			TarInputStream tin  = new TarInputStream(gzipInputStream);
+
+			final TarInputStream tin = buildTarInputStream(ftp, sourceFilePath);
+			if (tin == null) {
+				return null;
+			}
 			TarEntry tarEntry = tin.getNextEntry();
-			
 			while (tarEntry != null) {
 				if (!tarEntry.isDirectory()) {
-					if (tarEntry.getName().equals(fileName) || tarEntry.getName().equals("./" + fileName)) {
+					final String tarName = tarEntry.getName();
+					log.debug("fileName= " + fileName);
+					log.debug("tarName= " + tarName);
+					if (tarName.equals(fileName) || tarName.equals("./" + fileName)) {
 						final long logFileSize = tarEntry.getSize();
 						// only consider the log file whose size is less
 						// than 5MB.
 						if (logFileSize <= (MAX_LOG_FILE * 1024 * 1024)) {
-							OutputStream fout = new ByteArrayOutputStream();
+							final OutputStream fout = new ByteArrayOutputStream();
 							tin.copyEntryContents(fout);
 							return fout.toString();
-					 
+
 						} else {
 							throw new Exception(fileName + " is " + logFileSize + "B. It is more than " + MAX_LOG_FILE + "MB. Please download it from "
 									+ sourceFilePath);
@@ -188,17 +207,16 @@ public class AirFtpClient {
 				}
 				tarEntry = tin.getNextEntry();
 			}
-			
+
 			throw new Exception("The address or file name is empty.");
-		} catch (SocketException e) {
+		} catch (final SocketException e) {
 			log.error(e);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			log.error(e);
 		} finally {
-			output.close();
 			ftp.logout();
 			ftp.disconnect();
 		}
-		return "????"; 
+		return "????";
 	}
 }

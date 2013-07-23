@@ -3,40 +3,51 @@ package org.feuyeux.air.ftp.client;
 import java.io.IOException;
 import java.net.SocketException;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class TestAirFtpClient {
-	private String	server	= "localhost";
-	private int		port	= 21;
-	private String	user	= "feuyeux";
-	private String	pw		= "eric";
+	Logger log = Logger.getLogger(getClass());
+	private final String server = "localhost";
+	private final int port = 21;
+	private final String user = "feuyeux";
+	private final String pw = "eric";
 
 	@Test
 	public void testConnection() throws SocketException, IOException {
-		AirFtpClient client = new AirFtpClient();
+		final AirFtpClient client = new AirFtpClient();
 		Assert.assertTrue(client.isConnect(server, port));
 	}
 
 	@Test
 	public void testAuth() throws SocketException, IOException {
-		AirFtpClient client = new AirFtpClient();
+		final AirFtpClient client = new AirFtpClient();
 		Assert.assertTrue(client.isAuth(server, port, user, pw));
 	}
 
 	@Test
 	public void testStoreFile() throws IOException {
-		String sourceFilePath = "01.txt";
-		String targetFilePath = "1.txt";
-		AirFtpClient client = new AirFtpClient(server, port, user, pw);
+		final String sourceFilePath = "01.txt";
+		final String targetFilePath = "1.txt";
+		final AirFtpClient client = new AirFtpClient(server, port, user, pw);
 		client.storeFile(targetFilePath, sourceFilePath);
 	}
 
 	@Test
 	public void testRetrieveFile() throws IOException {
-		String sourceFilePath = "1.txt";
-		String targetFilePath = "11.txt";
-		AirFtpClient client = new AirFtpClient(server, port, user, pw);
+		final String sourceFilePath = "1.txt";
+		final String targetFilePath = "11.txt";
+		final AirFtpClient client = new AirFtpClient(server, port, user, pw);
 		client.retrieveFile(sourceFilePath, targetFilePath);
+	}
+
+	@Test
+	public void testTgzFileContent() throws Exception {
+		final String sourceFilePath = "/tgz/2013_04_28_14h53m41s_1367132021835283.tgz";
+		final String fileName = "TI_Adv_PPP_DataPPP_01.log";
+		final AirFtpClient client = new AirFtpClient(server, port, user, pw);
+		final String result = client.tgzFileContent(sourceFilePath, fileName);
+		log.debug("tgz log content:\n" + result);
 	}
 }
