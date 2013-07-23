@@ -1,15 +1,19 @@
 package org.feuyeux.air.ftp.client;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.SocketException;
+import java.util.zip.GZIPInputStream;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.apache.log4j.Logger;
+import org.apache.tools.tar.TarEntry;
+import org.apache.tools.tar.TarInputStream;
 
 public class AirFtpClient {
 	Logger	log								= Logger.getLogger(getClass());
@@ -21,7 +25,9 @@ public class AirFtpClient {
 	int		port							= 0;
 	boolean	storeFile						= false, binaryTransfer = false;
 	boolean	localActive						= false, useEpsvWithIPv4 = false;
-
+	private Integer		MAX_UNZIPPED_FILE					= 20;
+	private Integer		MAX_LOG_FILE						= 20;
+	
 	public AirFtpClient() {
 	}
 
@@ -128,5 +134,71 @@ public class AirFtpClient {
 			ftp.logout();
 			ftp.disconnect();
 		}
+	}
+	
+	private long getZipFileSize(String filePathAndName, FTPClient ftpClient) throws Exception {
+		long tgzFileSize = 0;
+		final String s = "SIZE " + filePathAndName + " \r\n";
+		if (ftpClient != null) {
+			ftpClient.sendCommand(s);
+			final String msg = ftpClient.getReplyString();
+			if (msg.startsWith("213")) {
+				tgzFileSize = Long.parseLong(msg.substring(3).trim());
+			}
+		}
+		return tgzFileSize;
+	}
+	
+	public String tgzFileContent(String sourceFilePath, String fileName) throws Exception {
+		FTPClient ftp = null;OutputStream output = null;
+		try {
+			ftp = initializeFtpClient(server, port);
+			ftp.login(username, password);
+			final long tgzFileSize = getZipFileSize(sourceFilePath,ftp);
+			if (tgzFileSize > (MAX_UNZIPPED_FILE * 1024 * 1024)) {
+				throw new Exception("The tgz file is " + tgzFileSize + "B. It is more than " + MAX_UNZIPPED_FILE + "MB. Please download it from " + sourceFilePath);
+			}
+			
+			String targetFilePath = "";
+			output = new FileOutputStream(targetFilePath);
+			//					ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+			//					ftpClient.enterLocalPassiveMode();
+			ftp.retrieveFile(sourceFilePath, output);
+			
+			GZIPInputStream gzipInputStream = new GZIPInputStream(new FileInputStream(targetFilePath));
+			TarInputStream tin  = new TarInputStream(gzipInputStream);
+			TarEntry tarEntry = tin.getNextEntry();
+			
+			while (tarEntry != null) {
+				if (!tarEntry.isDirectory()) {
+					if (tarEntry.getName().equals(fileName) || tarEntry.getName().equals("./" + fileName)) {
+						final long logFileSize = tarEntry.getSize();
+						// only consider the log file whose size is less
+						// than 5MB.
+						if (logFileSize <= (MAX_LOG_FILE * 1024 * 1024)) {
+							OutputStream fout = new ByteArrayOutputStream();
+							tin.copyEntryContents(fout);
+							return fout.toString();
+					 
+						} else {
+							throw new Exception(fileName + " is " + logFileSize + "B. It is more than " + MAX_LOG_FILE + "MB. Please download it from "
+									+ sourceFilePath);
+						}
+					}
+				}
+				tarEntry = tin.getNextEntry();
+			}
+			
+			throw new Exception("The address or file name is empty.");
+		} catch (SocketException e) {
+			log.error(e);
+		} catch (IOException e) {
+			log.error(e);
+		} finally {
+			output.close();
+			ftp.logout();
+			ftp.disconnect();
+		}
+		return "????"; 
 	}
 }
