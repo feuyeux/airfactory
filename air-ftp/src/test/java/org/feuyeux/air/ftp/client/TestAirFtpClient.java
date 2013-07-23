@@ -9,10 +9,10 @@ import org.junit.Test;
 
 public class TestAirFtpClient {
 	Logger log = Logger.getLogger(getClass());
-	private final String server = "localhost";
+	private final String server = "ftp-utf.rennes.eu.thmulti.com"; //"localhost";
 	private final int port = 21;
-	private final String user = "feuyeux";
-	private final String pw = "eric";
+	private final String user = "jenkins";//"feuyeux";
+	private final String pw = "PWD4j3nkins";//"eric";
 
 	@Test
 	public void testConnection() throws SocketException, IOException {
@@ -44,7 +44,7 @@ public class TestAirFtpClient {
 
 	@Test
 	public void testTgzFileContent() throws Exception {
-		final String sourceFilePath = "/tgz/2013_04_28_14h53m41s_1367132021835283.tgz";
+		final String sourceFilePath = "/ForTest/donotDelete/2013_04_28_14h53m41s_1367132021835283.tgz";
 		final String fileName = "TI_Adv_PPP_DataPPP_01.log";
 		final AirFtpClient client = new AirFtpClient(server, port, user, pw);
 		final String result = client.tgzFileContent(sourceFilePath, fileName);

@@ -159,7 +159,6 @@ public class AirFtpClient {
 			ftp.enterLocalPassiveMode();
 			ftp.retrieveFile(sourceFilePath, output);
 			final GZIPInputStream gzipInputStream = new GZIPInputStream(new FileInputStream(targetFilePath));
-
 			return new TarInputStream(gzipInputStream);
 		} catch (final Exception e) {
 			log.error(e);
